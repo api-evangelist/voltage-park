@@ -1,0 +1,72 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Voltage Park
+providerId: voltage-park
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- GPU
+- Cloud
+- AI Infrastructure
+- H100
+- H200
+- Bare Metal
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Voltage Park On-Demand API does not publish explicit per-second or
+  per-minute request rate limits in its public documentation. Practical limits
+  are governed by GPU inventory and account quotas: on-demand capacity ranges
+  from 1 up to ~1016 GPUs, bare-metal rentals are provisioned in multiples of
+  eight, and reserved capacity spans 32 to 8000+ GPUs. API tokens are
+  bearer-scoped per organization and expire after one year. Specific HTTP
+  request throttling values are not reconciled in this artifact.
+notes: >-
+  No documented RPM/RPS values were found on docs.voltagepark.com or the API
+  reference. Quotas are effectively capacity- and balance-driven (deployments
+  fail when inventory is unavailable or account balance is insufficient).
+  Confirm any request throttling and per-organization GPU caps with Voltage
+  Park support during reconciliation.
+sources:
+- https://docs.voltagepark.com/on-demand/api
+- https://www.voltagepark.com/pricing
+- https://www.voltagepark.com/product/on-demand
+responseCodes:
+  throttled: 429
+limits:
+- name: API Request Rate
+  scope: token
+  metric: requests
+  limit: not publicly documented
+  notes: No explicit RPM/RPS published; bearer token scoped to one organization.
+- name: On-Demand GPU Capacity
+  scope: account
+  metric: gpus
+  limit: up to ~1016 per on-demand cluster
+  notes: Deployments are bounded by available inventory at the chosen location.
+- name: Bare-Metal Node Granularity
+  scope: account
+  metric: gpus
+  limit: multiples of 8
+  notes: gpu_count on bare-metal provisioning must be a positive multiple of eight.
+- name: Reserved Capacity
+  scope: account
+  metric: gpus
+  limit: 32 to 8000+
+  notes: Reserved clusters require 6+ month commitments and are sized by contract.
+- name: API Token Lifetime
+  scope: token
+  metric: days
+  limit: 365
+  notes: Bearer API tokens are valid for one year before expiring.
+policies:
+- name: Capacity-Bounded Provisioning
+  description: Requests to deploy fail when GPU inventory is unavailable at the selected location or host node.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,103 @@
+aid: voltage-park
+name: Voltage Park
+review:
+  question: Does Voltage Park expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. The Voltage Park On-Demand API is a
+    synchronous REST (HTTPS) management API for provisioning and operating GPU
+    infrastructure. No Server-Sent Events (SSE), WebSocket, or other streaming
+    transport is documented, so there is no event-driven surface to model.
+findings:
+  summary: |
+    Voltage Park operates a real, documented public REST API for its On-Demand
+    GPU cloud, served at https://cloud-api.voltagepark.com/api/v1 and described
+    by a machine-readable OpenAPI 3.1 document at
+    https://cloud-api.voltagepark.com/api/v1/openapi.json (title "Voltage Park
+    On-Demand API", version 0.0.1). The API covers virtual machines (including
+    instant VMs), bare-metal GPU rentals with Kubernetes/Slurm cluster addons,
+    organization SSH keys, shared storage, locations/host nodes/instant-deploy
+    presets, billing, and cloud-init validation. Authentication is HTTP bearer
+    token (created on the dashboard Developers page, one-year lifetime); the
+    OpenAPI also lists an internal UI-Authorization API-key header for the
+    console. The auth scheme description notes tokens are "generated from
+    TensorDock storefront," reflecting that On-Demand runs on TensorDock
+    infrastructure. Public per-GPU-hour pricing is limited: only the
+    $1.99/GPU-hour H100 on-demand floor is advertised, with Infiniband
+    on-demand, H200, and Long-Term Reserve listed as "contact for pricing."
+    Note: docs.voltagepark.com now 307-redirects to a help center at
+    support.voltagepark.com.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://cloud-api.voltagepark.com/api/v1
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming endpoint is documented.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented for any resource.
+  authentication:
+    - scheme: bearer
+      name: apiTokenAuth
+      note: API token from the dashboard Developers page, valid one year, sent as Authorization Bearer.
+    - scheme: apiKey
+      name: APIKeyHeader
+      header: UI-Authorization
+      note: Internal console UI authorization header listed in the OpenAPI; not the developer-facing method.
+  endpointsConfirmedRest:
+    - GET    https://cloud-api.voltagepark.com/api/v1/virtual-machines/
+    - POST   https://cloud-api.voltagepark.com/api/v1/virtual-machines/instant
+    - GET    https://cloud-api.voltagepark.com/api/v1/virtual-machines/instant/locations
+    - GET    https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}
+    - PATCH  https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}
+    - DELETE https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}
+    - PUT    https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}/power-status
+    - POST   https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}/relocate
+    - POST   https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}/port-forward
+    - GET    https://cloud-api.voltagepark.com/api/v1/bare-metal/
+    - POST   https://cloud-api.voltagepark.com/api/v1/bare-metal/
+    - GET    https://cloud-api.voltagepark.com/api/v1/bare-metal/locations
+    - GET    https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes
+    - GET    https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes/{cluster_id}/health
+    - POST   https://cloud-api.voltagepark.com/api/v1/bare-metal/{baremetal_rental_id}/reboot
+    - PUT    https://cloud-api.voltagepark.com/api/v1/bare-metal/{baremetal_rental_id}/power-status
+    - GET    https://cloud-api.voltagepark.com/api/v1/organization/
+    - GET    https://cloud-api.voltagepark.com/api/v1/organization/ssh-keys
+    - POST   https://cloud-api.voltagepark.com/api/v1/organization/ssh-keys
+    - DELETE https://cloud-api.voltagepark.com/api/v1/organization/ssh-keys/{ssh_key_id}
+    - GET    https://cloud-api.voltagepark.com/api/v1/storage/
+    - POST   https://cloud-api.voltagepark.com/api/v1/storage/
+    - GET    https://cloud-api.voltagepark.com/api/v1/locations/
+    - GET    https://cloud-api.voltagepark.com/api/v1/hostnodes/{hostnode_id}
+    - GET    https://cloud-api.voltagepark.com/api/v1/billing/hourly-rate
+    - GET    https://cloud-api.voltagepark.com/api/v1/billing/transactions
+    - POST   https://cloud-api.voltagepark.com/api/v1/validate/cloudinit
+sources:
+  - url: https://cloud-api.voltagepark.com/api/v1/openapi.json
+    type: OpenAPI
+    note: Live machine-readable OpenAPI 3.1 spec; title "Voltage Park On-Demand API", version 0.0.1, ~46 operations.
+  - url: https://docs.voltagepark.com/on-demand/api
+    type: APIReference
+    note: API overview; bearer token auth, base URL https://cloud-api.voltagepark.com. 307-redirects to support.voltagepark.com.
+  - url: https://www.voltagepark.com/pricing
+    type: Pricing
+    note: H100 on-demand from $1.99/GPU-hour; Infiniband on-demand, H200, and Long-Term Reserve are "contact for pricing."
+  - url: https://www.voltagepark.com/product/cloud-h100
+    type: Documentation
+    note: On-demand H100 product; self-serve provisioning in ~15 minutes, bare-metal and VM access.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No streaming or event-driven protocol surface exists, so no AsyncAPI
+    document was authored. The catalog models the documented synchronous REST
+    surface via OpenAPI, plus Plans, Rate Limits, and FinOps artifacts. Pricing
+    artifacts are marked reconciled: false because most per-GPU-hour rates are
+    gated behind "contact for pricing."

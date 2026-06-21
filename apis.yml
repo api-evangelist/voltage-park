@@ -1,0 +1,170 @@
+aid: voltage-park
+url: https://raw.githubusercontent.com/api-evangelist/voltage-park/refs/heads/main/apis.yml
+name: Voltage Park
+kind: company
+description: Voltage Park is a GPU cloud offering on-demand and reserved NVIDIA H100
+  and H200 clusters as bare metal and virtual machines. Its On-Demand API (served at
+  cloud-api.voltagepark.com, running on TensorDock infrastructure) lets developers
+  deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage,
+  and billing programmatically with bearer-token authentication.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- GPU
+- Cloud
+- AI Infrastructure
+- H100
+- H200
+- Bare Metal
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: voltage-park:voltage-park-virtual-machines-api
+  name: Voltage Park Virtual Machines API
+  tags:
+  - Virtual Machines
+  - Instances
+  - On-Demand
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.voltagepark.com/on-demand/api
+  baseURL: https://cloud-api.voltagepark.com/api/v1
+  properties:
+  - url: https://docs.voltagepark.com/on-demand/deploy-gpus/virtual-machines-vms
+    type: Documentation
+  - url: https://docs.voltagepark.com/on-demand/api
+    type: APIReference
+  - url: openapi/voltage-park-openapi.yml
+    type: OpenAPI
+  - url: collections/voltage-park.postman_collection.json
+    type: PostmanCollection
+  description: Deploy, list, modify, power-cycle, relocate, port-forward, and terminate
+    on-demand GPU virtual machines, including preconfigured instant VMs provisioned
+    in seconds from location presets.
+- aid: voltage-park:voltage-park-bare-metal-clusters-api
+  name: Voltage Park Bare Metal & Clusters API
+  tags:
+  - Bare Metal
+  - Clusters
+  - Kubernetes
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.voltagepark.com/on-demand/api
+  baseURL: https://cloud-api.voltagepark.com/api/v1
+  properties:
+  - url: https://docs.voltagepark.com/on-demand/deploy-gpus
+    type: Documentation
+  - url: https://docs.voltagepark.com/on-demand/api
+    type: APIReference
+  - url: openapi/voltage-park-openapi.yml
+    type: OpenAPI
+  - url: collections/voltage-park.postman_collection.json
+    type: PostmanCollection
+  description: Provision and manage multi-node bare-metal H100/H200 GPU rentals in
+    counts of eight, including power control, reboot, node removal, and Kubernetes /
+    Slurm cluster addons and health.
+- aid: voltage-park:voltage-park-ssh-keys-api
+  name: Voltage Park SSH Keys API
+  tags:
+  - SSH Keys
+  - Access
+  - Organization
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.voltagepark.com/on-demand/api
+  baseURL: https://cloud-api.voltagepark.com/api/v1
+  properties:
+  - url: https://docs.voltagepark.com/on-demand/api
+    type: APIReference
+  - url: openapi/voltage-park-openapi.yml
+    type: OpenAPI
+  - url: collections/voltage-park.postman_collection.json
+    type: PostmanCollection
+  description: List, add, and remove organization SSH public keys used to grant secure
+    access to virtual machines and bare-metal rentals at provision time.
+- aid: voltage-park:voltage-park-storage-api
+  name: Voltage Park Storage API
+  tags:
+  - Storage
+  - Volumes
+  - NFS
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.voltagepark.com/on-demand/api
+  baseURL: https://cloud-api.voltagepark.com/api/v1
+  properties:
+  - url: https://docs.voltagepark.com/on-demand/api
+    type: APIReference
+  - url: openapi/voltage-park-openapi.yml
+    type: OpenAPI
+  - url: collections/voltage-park.postman_collection.json
+    type: PostmanCollection
+  description: Create, list, resize, configure NFS squash on, and terminate shared
+    storage volumes attachable to bare-metal rentals, with an hourly storage rate
+    endpoint.
+- aid: voltage-park:voltage-park-locations-api
+  name: Voltage Park Locations & HostNodes API
+  tags:
+  - Locations
+  - HostNodes
+  - Inventory
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.voltagepark.com/on-demand/api
+  baseURL: https://cloud-api.voltagepark.com/api/v1
+  properties:
+  - url: https://docs.voltagepark.com/on-demand/api
+    type: APIReference
+  - url: openapi/voltage-park-openapi.yml
+    type: OpenAPI
+  - url: collections/voltage-park.postman_collection.json
+    type: PostmanCollection
+  description: Discover available locations, host nodes, and instant-deploy presets
+    with their available GPU resources to inform VM and bare-metal placement.
+- aid: voltage-park:voltage-park-billing-api
+  name: Voltage Park Billing API
+  tags:
+  - Billing
+  - Usage
+  - FinOps
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.voltagepark.com/on-demand/api
+  baseURL: https://cloud-api.voltagepark.com/api/v1
+  properties:
+  - url: https://docs.voltagepark.com/on-demand/api
+    type: APIReference
+  - url: openapi/voltage-park-openapi.yml
+    type: OpenAPI
+  - url: collections/voltage-park.postman_collection.json
+    type: PostmanCollection
+  description: Retrieve the current combined hourly rate for active rentals and pull
+    historical and monthly organization billing transaction logs.
+- aid: voltage-park:voltage-park-organization-api
+  name: Voltage Park Organization API
+  tags:
+  - Organization
+  - Account
+  - Management
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.voltagepark.com/on-demand/api
+  baseURL: https://cloud-api.voltagepark.com/api/v1
+  properties:
+  - url: https://docs.voltagepark.com/on-demand/api
+    type: APIReference
+  - url: openapi/voltage-park-openapi.yml
+    type: OpenAPI
+  - url: collections/voltage-park.postman_collection.json
+    type: PostmanCollection
+  description: Read and update organization details, billing notification settings,
+    and the organization address used for invoicing.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/voltage-park
+- type: Website
+  url: https://www.voltagepark.com
+- type: Documentation
+  url: https://docs.voltagepark.com
+- type: Plans
+  url: plans/voltage-park-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/voltage-park-rate-limits.yml
+- type: FinOps
+  url: finops/voltage-park-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

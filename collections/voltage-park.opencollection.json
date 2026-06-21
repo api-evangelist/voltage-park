@@ -1,0 +1,687 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voltage Park On-Demand API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Virtual Machines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available locations for instant VMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/instant/locations"
+          },
+          "docs": "List available locations for instant VMs"
+        },
+        {
+          "info": {
+            "name": "Location details for instant VMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/instant/locations/{location_id}"
+          },
+          "docs": "Location details for instant VMs"
+        },
+        {
+          "info": {
+            "name": "Deploy an instant virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/instant",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploy an instant virtual machine"
+        },
+        {
+          "info": {
+            "name": "List of owned, unterminated virtual machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/"
+          },
+          "docs": "List of owned, unterminated virtual machines"
+        },
+        {
+          "info": {
+            "name": "Details for an unterminated virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}"
+          },
+          "docs": "Details for an unterminated virtual machine"
+        },
+        {
+          "info": {
+            "name": "Modify a virtual machine's details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a virtual machine's details"
+        },
+        {
+          "info": {
+            "name": "Terminate a virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}"
+          },
+          "docs": "Terminate a virtual machine"
+        },
+        {
+          "info": {
+            "name": "Start or stop a virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}/power-status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start or stop a virtual machine"
+        },
+        {
+          "info": {
+            "name": "Relocate a stopped-disassociated virtual machine to a new hostnode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}/relocate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Relocate a stopped-disassociated virtual machine to a new hostnode"
+        },
+        {
+          "info": {
+            "name": "Request port forwarding for a virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}/port-forward",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request port forwarding for a virtual machine"
+        },
+        {
+          "info": {
+            "name": "Delete port forwarding(s) for a virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/{virtual_machine_id}/port-forward"
+          },
+          "docs": "Delete port forwarding(s) for a virtual machine"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bare Metal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of available baremetal locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/locations"
+          },
+          "docs": "List of available baremetal locations"
+        },
+        {
+          "info": {
+            "name": "Get more detailed information about baremetal locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/detailed-locations"
+          },
+          "docs": "Get more detailed information about baremetal locations"
+        },
+        {
+          "info": {
+            "name": "Provision a new bare-metal server rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provision a new bare-metal server rental"
+        },
+        {
+          "info": {
+            "name": "List of owned, unterminated baremetal machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/"
+          },
+          "docs": "List of owned, unterminated baremetal machines"
+        },
+        {
+          "info": {
+            "name": "Information about kubernetes deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes"
+          },
+          "docs": "Information about kubernetes deployments"
+        },
+        {
+          "info": {
+            "name": "Get the health status of a kubernetes cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes/{cluster_id}/health"
+          },
+          "docs": "Get the health status of a kubernetes cluster."
+        },
+        {
+          "info": {
+            "name": "Get details for a baremetal rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/{baremetal_rental_id}"
+          },
+          "docs": "Get details for a baremetal rental"
+        },
+        {
+          "info": {
+            "name": "Terminate a bare-metal rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/{baremetal_rental_id}"
+          },
+          "docs": "Terminate a bare-metal rental"
+        },
+        {
+          "info": {
+            "name": "Modify baremetal rental details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/{baremetal_rental_id}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify baremetal rental details"
+        },
+        {
+          "info": {
+            "name": "Start or stop the nodes in a baremetal rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/{baremetal_rental_id}/power-status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start or stop the nodes in a baremetal rental"
+        },
+        {
+          "info": {
+            "name": "Add or update Slurm user for a Kubernetes cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes/{cluster_id}/slurm-user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update Slurm user for a Kubernetes cluster"
+        },
+        {
+          "info": {
+            "name": "Get details for a specific addon for a Kubernetes cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes/{cluster_id}/addons/{addon}"
+          },
+          "docs": "Get details for a specific addon for a Kubernetes cluster"
+        },
+        {
+          "info": {
+            "name": "Reboot specific nodes in a baremetal rental.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/{baremetal_rental_id}/reboot",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reboot specific nodes in a baremetal rental."
+        },
+        {
+          "info": {
+            "name": "Remove certain nodes in a rental.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/{baremetal_rental_id}/remove-nodes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove certain nodes in a rental."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Current rate for active rentals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/billing/hourly-rate"
+          },
+          "docs": "Current rate for active rentals"
+        },
+        {
+          "info": {
+            "name": "Historical organization billing log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/billing/transactions"
+          },
+          "docs": "Historical organization billing log"
+        },
+        {
+          "info": {
+            "name": "Monthly billing log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/billing/reports/{year}/{month}/transactions"
+          },
+          "docs": "Monthly billing log"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organization Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Organization details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/"
+          },
+          "docs": "Organization details"
+        },
+        {
+          "info": {
+            "name": "Update organization details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update organization details"
+        },
+        {
+          "info": {
+            "name": "List of SSH public keys under your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/ssh-keys"
+          },
+          "docs": "List of SSH public keys under your organization"
+        },
+        {
+          "info": {
+            "name": "Add new SSH public key to your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/ssh-keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new SSH public key to your organization"
+        },
+        {
+          "info": {
+            "name": "Remove an SSH key from your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/ssh-keys/{ssh_key_id}"
+          },
+          "docs": "Remove an SSH key from your organization"
+        },
+        {
+          "info": {
+            "name": "Organization address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/address"
+          },
+          "docs": "Organization address"
+        },
+        {
+          "info": {
+            "name": "Set organization address",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/address",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set organization address"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate a cloud init script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/validate/cloudinit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate a cloud init script"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Instant Deploy Presets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Instant Deploy Presets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/instant-deploy-presets/"
+          },
+          "docs": "List Instant Deploy Presets"
+        },
+        {
+          "info": {
+            "name": "Get Instant Deploy Preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/instant-deploy-presets/{instant_deploy_preset_id}"
+          },
+          "docs": "Get Instant Deploy Preset"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of available locations and available HostNodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/locations/"
+          },
+          "docs": "List of available locations and available HostNodes"
+        },
+        {
+          "info": {
+            "name": "Details for a given location by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/locations/{location_id}"
+          },
+          "docs": "Details for a given location by ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "HostNodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Details and available resources for a given HostNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/hostnodes/{hostnode_id}"
+          },
+          "docs": "Details and available resources for a given HostNode"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Storage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch hourly rate for storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/hourly-rate"
+          },
+          "docs": "Fetch hourly rate for storage"
+        },
+        {
+          "info": {
+            "name": "Create shared storage volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create shared storage volume"
+        },
+        {
+          "info": {
+            "name": "List of available storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/"
+          },
+          "docs": "List of available storage"
+        },
+        {
+          "info": {
+            "name": "Terminate a storage volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/{storage_id}"
+          },
+          "docs": "Terminate a storage volume"
+        },
+        {
+          "info": {
+            "name": "Update storage volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/{storage_id}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update storage volume"
+        },
+        {
+          "info": {
+            "name": "Get storage by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/{storage_id}"
+          },
+          "docs": "Get storage by id"
+        },
+        {
+          "info": {
+            "name": "Update NFS squash for a storage volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/{storage_id}/nfs-squash",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update NFS squash for a storage volume"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1711 @@
+{
+  "info": {
+    "_postman_id": "70752747-3dff-4441-9015-5c76099df65c",
+    "name": "Voltage Park On-Demand API",
+    "description": {
+      "content": "The all-purpose management API for Voltage Park On-Demand.",
+      "type": "text/plain"
+    },
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "id": "4b47a965-888f-4428-9772-f0b5eb8e2284",
+      "name": "Virtual Machines",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "82ce5a30-6596-473b-82f9-47b8f6c53749",
+          "name": "List available locations for instant VMs",
+          "request": {
+            "name": "List available locations for instant VMs",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/instant/locations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "instant",
+                "locations"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "d1d662d5-6024-4d90-ae34-565431a90465",
+          "name": "Location details for instant VMs",
+          "request": {
+            "name": "Location details for instant VMs",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/instant/locations/{location_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "instant",
+                "locations",
+                "{location_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "bc424d91-2f2b-44ec-8d91-b856fdc53b52",
+          "name": "Deploy an instant virtual machine",
+          "request": {
+            "name": "Deploy an instant virtual machine",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/instant",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "instant"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "61ff8037-5ca3-4554-9e2d-1292be53c19e",
+          "name": "List of owned, unterminated virtual machines",
+          "request": {
+            "name": "List of owned, unterminated virtual machines",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "dfd5fb16-5c5b-4b6b-a86d-80e9b6fa8d8d",
+          "name": "Details for an unterminated virtual machine",
+          "request": {
+            "name": "Details for an unterminated virtual machine",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/{virtual_machine_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "{virtual_machine_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "2902361d-d9c1-4d98-8d28-8384fa2e88b9",
+          "name": "Modify a virtual machine's details",
+          "request": {
+            "name": "Modify a virtual machine's details",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/{virtual_machine_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "{virtual_machine_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "05275080-88c9-40db-97c8-fa150cc2ae73",
+          "name": "Terminate a virtual machine",
+          "request": {
+            "name": "Terminate a virtual machine",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/{virtual_machine_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "{virtual_machine_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "db20c1dd-d6ea-4834-a83f-3809df632661",
+          "name": "Start or stop a virtual machine",
+          "request": {
+            "name": "Start or stop a virtual machine",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/{virtual_machine_id}/power-status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "{virtual_machine_id}",
+                "power-status"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "9040409b-428f-4a47-a119-d5f8fafabce7",
+          "name": "Relocate a stopped-disassociated virtual machine to a new hostnode",
+          "request": {
+            "name": "Relocate a stopped-disassociated virtual machine to a new hostnode",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/{virtual_machine_id}/relocate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "{virtual_machine_id}",
+                "relocate"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "62461d23-013e-4779-af8d-2b4593c88a27",
+          "name": "Request port forwarding for a virtual machine",
+          "request": {
+            "name": "Request port forwarding for a virtual machine",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/{virtual_machine_id}/port-forward",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "{virtual_machine_id}",
+                "port-forward"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "13d8cede-f77a-4006-aca6-96f1fe00658d",
+          "name": "Delete port forwarding(s) for a virtual machine",
+          "request": {
+            "name": "Delete port forwarding(s) for a virtual machine",
+            "url": {
+              "raw": "{{baseUrl}}/virtual-machines/{virtual_machine_id}/port-forward",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-machines",
+                "{virtual_machine_id}",
+                "port-forward"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "18963734-ab78-4d3c-a39f-ee92ab4c0393",
+      "name": "Bare Metal",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd32e05a-7e40-4415-9523-5e541464db98",
+          "name": "List of available baremetal locations",
+          "request": {
+            "name": "List of available baremetal locations",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/locations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "locations"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "d1204fb9-9ded-403c-91fc-dc88b64c705e",
+          "name": "Get more detailed information about baremetal locations",
+          "request": {
+            "name": "Get more detailed information about baremetal locations",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/detailed-locations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "detailed-locations"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "8cd261a2-f41c-4fd3-972a-adf3c57cb2ce",
+          "name": "Provision a new bare-metal server rental",
+          "request": {
+            "name": "Provision a new bare-metal server rental",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "7e7a3b19-50b2-450a-b8d7-f522c60df6d5",
+          "name": "List of owned, unterminated baremetal machines",
+          "request": {
+            "name": "List of owned, unterminated baremetal machines",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "6823f909-e6d8-484c-838c-d7f469d31edf",
+          "name": "Information about kubernetes deployments",
+          "request": {
+            "name": "Information about kubernetes deployments",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/kubernetes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "kubernetes"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "f5cbff7c-1544-46c8-8253-85c5a8530ba1",
+          "name": "Get the health status of a kubernetes cluster.",
+          "request": {
+            "name": "Get the health status of a kubernetes cluster.",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/kubernetes/{cluster_id}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "kubernetes",
+                "{cluster_id}",
+                "health"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "0d38a545-45ce-4eb5-94e5-0de0e7bdd8a7",
+          "name": "Get details for a baremetal rental",
+          "request": {
+            "name": "Get details for a baremetal rental",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/{baremetal_rental_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "{baremetal_rental_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "c55be545-42f8-4518-9455-8db62b80f8a4",
+          "name": "Terminate a bare-metal rental",
+          "request": {
+            "name": "Terminate a bare-metal rental",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/{baremetal_rental_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "{baremetal_rental_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "d4af3cb8-a700-497d-ac46-e7fc2df64934",
+          "name": "Modify baremetal rental details",
+          "request": {
+            "name": "Modify baremetal rental details",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/{baremetal_rental_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "{baremetal_rental_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "0e0a21d0-479e-4a4d-ab28-2cb67c1e338d",
+          "name": "Start or stop the nodes in a baremetal rental",
+          "request": {
+            "name": "Start or stop the nodes in a baremetal rental",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/{baremetal_rental_id}/power-status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "{baremetal_rental_id}",
+                "power-status"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "f95eb7f6-5e92-4f8d-9286-4904797cbd44",
+          "name": "Add or update Slurm user for a Kubernetes cluster",
+          "request": {
+            "name": "Add or update Slurm user for a Kubernetes cluster",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/kubernetes/{cluster_id}/slurm-user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "kubernetes",
+                "{cluster_id}",
+                "slurm-user"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "860cfb6d-294a-4413-b21c-1e64f0b65d89",
+          "name": "Get details for a specific addon for a Kubernetes cluster",
+          "request": {
+            "name": "Get details for a specific addon for a Kubernetes cluster",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/kubernetes/{cluster_id}/addons/{addon}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "kubernetes",
+                "{cluster_id}",
+                "addons",
+                "{addon}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "dbec646a-4799-4ed2-ab56-bf84e24889a8",
+          "name": "Reboot specific nodes in a baremetal rental.",
+          "request": {
+            "name": "Reboot specific nodes in a baremetal rental.",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/{baremetal_rental_id}/reboot",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "{baremetal_rental_id}",
+                "reboot"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "f78708ce-9c44-4550-8b33-729435f59d66",
+          "name": "Remove certain nodes in a rental.",
+          "request": {
+            "name": "Remove certain nodes in a rental.",
+            "url": {
+              "raw": "{{baseUrl}}/bare-metal/{baremetal_rental_id}/remove-nodes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bare-metal",
+                "{baremetal_rental_id}",
+                "remove-nodes"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "1a8266ed-c651-42a4-a987-a0d5a53424bb",
+      "name": "Billing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8fc3fe23-e51f-4e91-9019-e96416f7e5f8",
+          "name": "Current rate for active rentals",
+          "request": {
+            "name": "Current rate for active rentals",
+            "url": {
+              "raw": "{{baseUrl}}/billing/hourly-rate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "billing",
+                "hourly-rate"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "c59c6e10-0bf8-43f6-be97-3ea8cbba24ee",
+          "name": "Historical organization billing log",
+          "request": {
+            "name": "Historical organization billing log",
+            "url": {
+              "raw": "{{baseUrl}}/billing/transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "billing",
+                "transactions"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "bc8ba3de-6a27-4ae8-ad4d-15188d037f6c",
+          "name": "Monthly billing log",
+          "request": {
+            "name": "Monthly billing log",
+            "url": {
+              "raw": "{{baseUrl}}/billing/reports/{year}/{month}/transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "billing",
+                "reports",
+                "{year}",
+                "{month}",
+                "transactions"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "f06ef82e-2264-4ed3-897d-031f19ba472c",
+      "name": "Organization Management",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8153a1b5-1b68-4a4a-8104-744fb87b3298",
+          "name": "Organization details",
+          "request": {
+            "name": "Organization details",
+            "url": {
+              "raw": "{{baseUrl}}/organization/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organization"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "6a1208a5-f78e-4d49-a438-c56576df0504",
+          "name": "Update organization details",
+          "request": {
+            "name": "Update organization details",
+            "url": {
+              "raw": "{{baseUrl}}/organization/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organization"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "d1162614-5087-49e5-bf9c-62938178690f",
+          "name": "List of SSH public keys under your organization",
+          "request": {
+            "name": "List of SSH public keys under your organization",
+            "url": {
+              "raw": "{{baseUrl}}/organization/ssh-keys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organization",
+                "ssh-keys"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "267cfc2a-dc3c-4c6a-8b9c-e78f01e0bcc8",
+          "name": "Add new SSH public key to your organization",
+          "request": {
+            "name": "Add new SSH public key to your organization",
+            "url": {
+              "raw": "{{baseUrl}}/organization/ssh-keys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organization",
+                "ssh-keys"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "f6a90e57-b77d-4e5c-8e7b-057a6f4f647e",
+          "name": "Remove an SSH key from your organization",
+          "request": {
+            "name": "Remove an SSH key from your organization",
+            "url": {
+              "raw": "{{baseUrl}}/organization/ssh-keys/{ssh_key_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organization",
+                "ssh-keys",
+                "{ssh_key_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "208053c2-dff3-4d7d-93d1-2b7ee803fe40",
+          "name": "Organization address",
+          "request": {
+            "name": "Organization address",
+            "url": {
+              "raw": "{{baseUrl}}/organization/address",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organization",
+                "address"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "af0a253f-85e6-459b-a193-1a9134fd480b",
+          "name": "Set organization address",
+          "request": {
+            "name": "Set organization address",
+            "url": {
+              "raw": "{{baseUrl}}/organization/address",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organization",
+                "address"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "f074e61b-4225-401e-85fe-af17022b2a46",
+      "name": "Validation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "03fad43d-4371-497c-be15-2fc2fb3ac67b",
+          "name": "Validate a cloud init script",
+          "request": {
+            "name": "Validate a cloud init script",
+            "url": {
+              "raw": "{{baseUrl}}/validate/cloudinit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "validate",
+                "cloudinit"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "6d0d3314-526d-45e2-b315-c2f61f90f433",
+      "name": "Instant Deploy Presets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91e0888f-1525-4824-98c4-ab703a37f4a1",
+          "name": "List Instant Deploy Presets",
+          "request": {
+            "name": "List Instant Deploy Presets",
+            "url": {
+              "raw": "{{baseUrl}}/instant-deploy-presets/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instant-deploy-presets"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a91ee93b-a2d6-4cbc-bfbb-1491e14cd1f4",
+          "name": "Get Instant Deploy Preset",
+          "request": {
+            "name": "Get Instant Deploy Preset",
+            "url": {
+              "raw": "{{baseUrl}}/instant-deploy-presets/{instant_deploy_preset_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instant-deploy-presets",
+                "{instant_deploy_preset_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "f6472638-a2b3-4b39-9985-84773de48386",
+      "name": "Locations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34bc90c9-58b2-40e7-91da-1775d3b491cb",
+          "name": "List of available locations and available HostNodes",
+          "request": {
+            "name": "List of available locations and available HostNodes",
+            "url": {
+              "raw": "{{baseUrl}}/locations/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "locations"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "e961b96d-e1c1-4071-96c8-aa6c5a34501d",
+          "name": "Details for a given location by ID",
+          "request": {
+            "name": "Details for a given location by ID",
+            "url": {
+              "raw": "{{baseUrl}}/locations/{location_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "locations",
+                "{location_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "de0315a8-dbc9-4ec2-9fdf-36b64e261527",
+      "name": "HostNodes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec1efd86-768a-47bd-8149-8ed0203f05bd",
+          "name": "Details and available resources for a given HostNode",
+          "request": {
+            "name": "Details and available resources for a given HostNode",
+            "url": {
+              "raw": "{{baseUrl}}/hostnodes/{hostnode_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "hostnodes",
+                "{hostnode_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "e7b616ed-d3df-4a1b-a5b0-8904cd867645",
+      "name": "Storage",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "679a8ad9-d1ce-41dd-9509-aae12f9e2642",
+          "name": "Fetch hourly rate for storage",
+          "request": {
+            "name": "Fetch hourly rate for storage",
+            "url": {
+              "raw": "{{baseUrl}}/storage/hourly-rate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "storage",
+                "hourly-rate"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "6d16f5fb-86a8-425a-ab9e-31b7497780cf",
+          "name": "Create shared storage volume",
+          "request": {
+            "name": "Create shared storage volume",
+            "url": {
+              "raw": "{{baseUrl}}/storage/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "storage"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "e9eeced5-b7ed-4cbe-a4e4-8c849ffc7b37",
+          "name": "List of available storage",
+          "request": {
+            "name": "List of available storage",
+            "url": {
+              "raw": "{{baseUrl}}/storage/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "storage"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "95e6d55b-3544-45ca-8374-555ba1d6cdc0",
+          "name": "Terminate a storage volume",
+          "request": {
+            "name": "Terminate a storage volume",
+            "url": {
+              "raw": "{{baseUrl}}/storage/{storage_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "storage",
+                "{storage_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "833fad08-ef8a-4b43-88c0-71aa1f7823d6",
+          "name": "Update storage volume",
+          "request": {
+            "name": "Update storage volume",
+            "url": {
+              "raw": "{{baseUrl}}/storage/{storage_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "storage",
+                "{storage_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "d2dab34b-9200-41b4-ba99-b6ec6c6994b9",
+          "name": "Get storage by id",
+          "request": {
+            "name": "Get storage by id",
+            "url": {
+              "raw": "{{baseUrl}}/storage/{storage_id}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "storage",
+                "{storage_id}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "43003c94-a7d7-4b96-a13b-748018d2671b",
+          "name": "Update NFS squash for a storage volume",
+          "request": {
+            "name": "Update NFS squash for a storage volume",
+            "url": {
+              "raw": "{{baseUrl}}/storage/{storage_id}/nfs-squash",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "storage",
+                "{storage_id}",
+                "nfs-squash"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud-api.voltagepark.com/api/v1",
+      "type": "string"
+    }
+  ]
+}

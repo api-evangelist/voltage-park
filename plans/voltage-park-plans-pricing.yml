@@ -1,0 +1,112 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Voltage Park
+providerId: voltage-park
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- GPU
+- Cloud
+- AI Infrastructure
+- H100
+- H200
+- Bare Metal
+- Plans
+description: >-
+  Voltage Park bills GPU compute on a per-GPU-hour usage model with no minimums
+  for on-demand and 6+ month commitments for reserved capacity. On-demand H100
+  access is publicly advertised starting at $1.99 per GPU-hour with no hidden
+  ingress, egress, or support fees. Detailed per-GPU-hour rates for Infiniband
+  on-demand, H200, and Long-Term Reserve are gated behind "contact for pricing"
+  on the public site, so most rates below are not reconciled. Shared storage is
+  billed separately at an hourly rate exposed via the API.
+notes: >-
+  Only the on-demand H100 $1.99/GPU-hour floor is published. On-Demand Ethernet,
+  On-Demand 3200 Gbps Infiniband, and Long-Term Reserve are listed as "Contact
+  for pricing" on voltagepark.com/pricing. The API exposes the customer's actual
+  combined hourly rate at GET /billing/hourly-rate and storage rate at
+  GET /storage/hourly-rate; reconcile exact figures from an authenticated
+  account or a sales quote.
+sources:
+- https://www.voltagepark.com/pricing
+- https://www.voltagepark.com/product/cloud-h100
+- https://docs.voltagepark.com/on-demand/api
+plans:
+- id: voltage-park-on-demand
+  name: On-Demand
+  type: usage
+  description: >-
+    Self-serve, per-GPU-hour GPU compute (virtual machines and bare-metal
+    rentals) with no contract or minimum, provisionable in minutes.
+  entries:
+  - label: H100 On-Demand (Ethernet)
+    name: h100_on_demand
+    type: usage
+    metric: gpu_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $1.99 per GPU-hour
+    userMultiplied: false
+  - label: H100 On-Demand (3200 Gbps Infiniband)
+    name: h100_on_demand_infiniband
+    type: usage
+    metric: gpu_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact for pricing
+    userMultiplied: false
+  - label: H200 On-Demand
+    name: h200_on_demand
+    type: usage
+    metric: gpu_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact for pricing
+    userMultiplied: false
+  - label: Shared Storage
+    name: shared_storage
+    type: usage
+    metric: gb_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: hourly rate via GET /storage/hourly-rate
+    userMultiplied: false
+  elements:
+  - name: Virtual Machines
+  - name: Bare Metal Rentals
+  - name: Shared Storage
+  - name: Kubernetes / Slurm Clusters
+- id: voltage-park-reserve
+  name: Long-Term Reserve
+  type: subscription
+  description: >-
+    Dedicated reserved GPU clusters on 6+ month commitments, from 32 up to
+    8000+ GPUs, with negotiated per-GPU-hour rates.
+  entries:
+  - label: Reserved Cluster (6+ month term)
+    name: reserved_cluster
+    type: subscription
+    metric: gpu_hours
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact for pricing
+    userMultiplied: false
+  elements:
+  - name: Dedicated H100 / H200 Clusters
+  - name: Infiniband Networking
+  - name: Negotiated Volume Pricing
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
