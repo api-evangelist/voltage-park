@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/voltage-park-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: apiTokenAuth
+  type: http
+  scheme: bearer
+  description: Bearer API token created on the Developers page of the Voltage Park dashboard.
+    Tokens are valid for one year before expiring.
+  sources:
+  - openapi/voltage-park-openapi.yml

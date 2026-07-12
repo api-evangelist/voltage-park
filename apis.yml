@@ -153,6 +153,12 @@ apis:
   description: Read and update organization details, billing notification settings,
     and the organization address used for invoicing.
 common:
+- type: TrustCenter
+  url: security/voltage-park-trust-center.yml
+- type: DomainSecurity
+  url: security/voltage-park-domain-security.yml
+- type: Authentication
+  url: authentication/voltage-park-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/voltage-park
 - type: Website
@@ -165,6 +171,8 @@ common:
   url: rate-limits/voltage-park-rate-limits.yml
 - type: FinOps
   url: finops/voltage-park-finops.yml
+- url: https://www.voltagepark.com/blog/rss.xml
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
