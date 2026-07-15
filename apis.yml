@@ -153,6 +153,8 @@ apis:
   description: Read and update organization details, billing notification settings,
     and the organization address used for invoicing.
 common:
+- type: AgenticAccess
+  url: agentic-access/voltage-park-agentic-access.yml
 - type: TrustCenter
   url: security/voltage-park-trust-center.yml
 - type: DomainSecurity
