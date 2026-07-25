@@ -1,0 +1,210 @@
+openapi: 3.0.1
+info:
+  title: Voltage Park On-Demand Bare Metal Storage API
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  termsOfService: https://www.voltagepark.com/legal
+  contact:
+    name: Voltage Park Support
+    url: https://support.voltagepark.com
+  version: 0.0.1
+servers:
+- url: https://cloud-api.voltagepark.com/api/v1
+security:
+- apiTokenAuth: []
+tags:
+- name: Storage
+  description: Shared storage volumes attachable to bare-metal rentals.
+paths:
+  /storage/hourly-rate:
+    get:
+      tags:
+      - Storage
+      operationId: getStorageHourlyRate
+      summary: Fetch hourly rate for storage
+      responses:
+        '200':
+          description: Storage hourly rate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageRate'
+  /storage/:
+    post:
+      tags:
+      - Storage
+      operationId: createStorage
+      summary: Create shared storage volume
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StorageCreate'
+      responses:
+        '201':
+          description: Storage volume created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageDetails'
+    get:
+      tags:
+      - Storage
+      operationId: listStorage
+      summary: List of available storage
+      responses:
+        '200':
+          description: Paginated list of storage volumes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedStorage'
+  /storage/{storage_id}:
+    get:
+      tags:
+      - Storage
+      operationId: getStorage
+      summary: Get storage by id
+      parameters:
+      - $ref: '#/components/parameters/StorageId'
+      responses:
+        '200':
+          description: Storage volume details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageDetails'
+    patch:
+      tags:
+      - Storage
+      operationId: updateStorage
+      summary: Update storage volume
+      parameters:
+      - $ref: '#/components/parameters/StorageId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StorageUpdate'
+      responses:
+        '200':
+          description: Updated storage volume details.
+    delete:
+      tags:
+      - Storage
+      operationId: terminateStorage
+      summary: Terminate a storage volume
+      parameters:
+      - $ref: '#/components/parameters/StorageId'
+      responses:
+        '204':
+          description: Storage volume terminated.
+  /storage/{storage_id}/nfs-squash:
+    patch:
+      tags:
+      - Storage
+      operationId: updateNfsSquash
+      summary: Update NFS squash for a storage volume
+      parameters:
+      - $ref: '#/components/parameters/StorageId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NFSSquashUpdate'
+      responses:
+        '200':
+          description: NFS squash updated.
+components:
+  schemas:
+    StorageDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        size_in_gb:
+          type: integer
+        status:
+          type: string
+    StorageRate:
+      type: object
+      properties:
+        rate_hourly:
+          type: string
+    StorageUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        size_in_gb:
+          type: integer
+    PaginatedStorage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/StorageDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    NFSSquashUpdate:
+      type: object
+      required:
+      - mode
+      properties:
+        mode:
+          type: string
+          enum:
+          - none
+          - root
+          - all
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    StorageCreate:
+      type: object
+      required:
+      - size_in_gb
+      - name
+      properties:
+        size_in_gb:
+          type: integer
+          minimum: 1
+          description: Number of gigabytes to allocate for the storage volume.
+          example: 100
+        name:
+          type: string
+          minLength: 1
+          maxLength: 60
+          pattern: ^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$
+          description: Lowercase alphanumerics, '-', '_', or '.'; must start and end with an alphanumeric. At most 60 characters. Duplicate names not allowed.
+        order_ids:
+          type: array
+          description: Active bare-metal rental IDs to attach this volume to on creation.
+          items:
+            type: string
+            format: uuid
+  parameters:
+    StorageId:
+      name: storage_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    apiTokenAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token created on the Developers page of the Voltage Park dashboard. Tokens are valid for one year before expiring.

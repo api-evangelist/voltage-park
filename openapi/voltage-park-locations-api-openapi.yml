@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  title: Voltage Park On-Demand Bare Metal Locations API
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  termsOfService: https://www.voltagepark.com/legal
+  contact:
+    name: Voltage Park Support
+    url: https://support.voltagepark.com
+  version: 0.0.1
+servers:
+- url: https://cloud-api.voltagepark.com/api/v1
+security:
+- apiTokenAuth: []
+tags:
+- name: Locations
+  description: Locations, host nodes, and instant-deploy presets.
+paths:
+  /locations/:
+    get:
+      tags:
+      - Locations
+      operationId: listLocations
+      summary: List of available locations and available HostNodes
+      responses:
+        '200':
+          description: Paginated list of locations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedLocation'
+  /locations/{location_id}:
+    get:
+      tags:
+      - Locations
+      operationId: getLocation
+      summary: Details for a given location by ID
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      responses:
+        '200':
+          description: Location details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullLocationDetails'
+  /hostnodes/{hostnode_id}:
+    get:
+      tags:
+      - Locations
+      operationId: getHostNode
+      summary: Details and available resources for a given HostNode
+      parameters:
+      - name: hostnode_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Host node details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostNodeDetails'
+  /instant-deploy-presets/:
+    get:
+      tags:
+      - Locations
+      operationId: listInstantDeployPresets
+      summary: List Instant Deploy Presets
+      responses:
+        '200':
+          description: Instant deploy presets.
+  /instant-deploy-presets/{instant_deploy_preset_id}:
+    get:
+      tags:
+      - Locations
+      operationId: getInstantDeployPreset
+      summary: Get Instant Deploy Preset
+      parameters:
+      - name: instant_deploy_preset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Instant deploy preset details.
+components:
+  parameters:
+    LocationId:
+      name: location_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    PaginatedLocation:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FullLocationDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    FullLocationDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    HostNodeDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+  securitySchemes:
+    apiTokenAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token created on the Developers page of the Voltage Park dashboard. Tokens are valid for one year before expiring.

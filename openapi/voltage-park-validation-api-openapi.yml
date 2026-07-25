@@ -1,0 +1,59 @@
+openapi: 3.0.1
+info:
+  title: Voltage Park On-Demand Bare Metal Validation API
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  termsOfService: https://www.voltagepark.com/legal
+  contact:
+    name: Voltage Park Support
+    url: https://support.voltagepark.com
+  version: 0.0.1
+servers:
+- url: https://cloud-api.voltagepark.com/api/v1
+security:
+- apiTokenAuth: []
+tags:
+- name: Validation
+  description: Validate cloud-init scripts before deployment.
+paths:
+  /validate/cloudinit:
+    post:
+      tags:
+      - Validation
+      operationId: validateCloudInit
+      summary: Validate a cloud init script
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloudinitValidationConfig'
+      responses:
+        '200':
+          description: Cloud-init validation result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudInitValidationResult'
+components:
+  schemas:
+    CloudInitValidationResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        errors:
+          type: array
+          items:
+            type: string
+    CloudinitValidationConfig:
+      type: object
+      required:
+      - script
+      properties:
+        script:
+          type: string
+  securitySchemes:
+    apiTokenAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token created on the Developers page of the Voltage Park dashboard. Tokens are valid for one year before expiring.

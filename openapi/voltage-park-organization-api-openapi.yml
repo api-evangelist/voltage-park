@@ -1,0 +1,228 @@
+openapi: 3.0.1
+info:
+  title: Voltage Park On-Demand Bare Metal Organization API
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  termsOfService: https://www.voltagepark.com/legal
+  contact:
+    name: Voltage Park Support
+    url: https://support.voltagepark.com
+  version: 0.0.1
+servers:
+- url: https://cloud-api.voltagepark.com/api/v1
+security:
+- apiTokenAuth: []
+tags:
+- name: Organization
+  description: Organization details, address, and SSH keys.
+paths:
+  /organization/:
+    get:
+      tags:
+      - Organization
+      operationId: getOrganization
+      summary: Organization details
+      responses:
+        '200':
+          description: Organization details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDetails'
+    patch:
+      tags:
+      - Organization
+      operationId: updateOrganization
+      summary: Update organization details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdate'
+      responses:
+        '200':
+          description: Updated organization details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDetails'
+  /organization/ssh-keys:
+    get:
+      tags:
+      - Organization
+      operationId: listSshKeys
+      summary: List of SSH public keys under your organization
+      responses:
+        '200':
+          description: Paginated list of SSH keys.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSshKey'
+    post:
+      tags:
+      - Organization
+      operationId: addSshKey
+      summary: Add new SSH public key to your organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSshKeyConfig'
+      responses:
+        '201':
+          description: SSH key added.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKeyDetails'
+  /organization/ssh-keys/{ssh_key_id}:
+    delete:
+      tags:
+      - Organization
+      operationId: removeSshKey
+      summary: Remove an SSH key from your organization
+      parameters:
+      - name: ssh_key_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: SSH key removed.
+  /organization/address:
+    get:
+      tags:
+      - Organization
+      operationId: getOrganizationAddress
+      summary: Organization address
+      responses:
+        '200':
+          description: Organization address.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationAddressDetails'
+    put:
+      tags:
+      - Organization
+      operationId: setOrganizationAddress
+      summary: Set organization address
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationAddressSet'
+      responses:
+        '200':
+          description: Organization address set.
+components:
+  schemas:
+    PaginatedSshKey:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SshKeyDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CreateSshKeyConfig:
+      type: object
+      required:
+      - name
+      - content
+      properties:
+        name:
+          type: string
+          minLength: 3
+          maxLength: 64
+          description: Label for this SSH public key. Up to 64 characters; alphanumeric, hyphens, or spaces only.
+          example: My-SSH-Public-Key
+        content:
+          type: string
+          description: The SSH public key contents.
+          example: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDAKOgHv82A6Oi7AWLvBC9N...
+    OrganizationAddressDetails:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+          nullable: true
+        city:
+          type: string
+        state:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+    OrganizationUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        billing_notification_target_emails:
+          type: array
+          items:
+            type: string
+        low_balance_emails_enabled:
+          type: boolean
+    SshKeyDetails:
+      type: object
+      required:
+      - id
+      - name
+      - content
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: My-SSH-Public-Key
+        content:
+          type: string
+    OrganizationAddressSet:
+      allOf:
+      - $ref: '#/components/schemas/OrganizationAddressDetails'
+    OrganizationDetails:
+      type: object
+      required:
+      - id
+      - name
+      - billing_notification_target_emails
+      - low_balance_emails_enabled
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: My VPOD Organization
+        billing_notification_target_emails:
+          type: array
+          items:
+            type: string
+        low_balance_emails_enabled:
+          type: boolean
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+  securitySchemes:
+    apiTokenAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token created on the Developers page of the Voltage Park dashboard. Tokens are valid for one year before expiring.

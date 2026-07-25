@@ -1,0 +1,328 @@
+openapi: 3.0.1
+info:
+  title: Voltage Park On-Demand Bare Metal API
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  termsOfService: https://www.voltagepark.com/legal
+  contact:
+    name: Voltage Park Support
+    url: https://support.voltagepark.com
+  version: 0.0.1
+servers:
+- url: https://cloud-api.voltagepark.com/api/v1
+security:
+- apiTokenAuth: []
+tags:
+- name: Bare Metal
+  description: Provision and manage multi-node bare-metal GPU rentals and clusters.
+paths:
+  /bare-metal/locations:
+    get:
+      tags:
+      - Bare Metal
+      operationId: listBareMetalLocations
+      summary: List of available baremetal locations
+      responses:
+        '200':
+          description: Paginated list of bare-metal locations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBareMetalLocation'
+  /bare-metal/detailed-locations:
+    get:
+      tags:
+      - Bare Metal
+      operationId: listDetailedBareMetalLocations
+      summary: Get more detailed information about baremetal locations
+      responses:
+        '200':
+          description: Detailed bare-metal location information.
+  /bare-metal/:
+    post:
+      tags:
+      - Bare Metal
+      operationId: provisionBareMetal
+      summary: Provision a new bare-metal server rental
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BareMetalDeployConfig'
+      responses:
+        '201':
+          description: Bare-metal rental provisioned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeployBareResult'
+    get:
+      tags:
+      - Bare Metal
+      operationId: listBareMetalRentals
+      summary: List of owned, unterminated baremetal machines
+      responses:
+        '200':
+          description: Paginated list of bare-metal rentals.
+  /bare-metal/kubernetes:
+    get:
+      tags:
+      - Bare Metal
+      operationId: listKubernetes
+      summary: Information about kubernetes deployments
+      responses:
+        '200':
+          description: Kubernetes deployment information.
+  /bare-metal/kubernetes/{cluster_id}/health:
+    get:
+      tags:
+      - Bare Metal
+      operationId: getKubernetesHealth
+      summary: Get the health status of a kubernetes cluster
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Kubernetes cluster health.
+  /bare-metal/kubernetes/{cluster_id}/slurm-user:
+    post:
+      tags:
+      - Bare Metal
+      operationId: upsertSlurmUser
+      summary: Add or update Slurm user for a Kubernetes cluster
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SlurmUserRequest'
+      responses:
+        '200':
+          description: Slurm user added or updated.
+  /bare-metal/kubernetes/{cluster_id}/addons/{addon}:
+    get:
+      tags:
+      - Bare Metal
+      operationId: getKubernetesAddon
+      summary: Get details for a specific addon for a Kubernetes cluster
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - name: addon
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Addon details.
+  /bare-metal/{baremetal_rental_id}:
+    get:
+      tags:
+      - Bare Metal
+      operationId: getBareMetalRental
+      summary: Get details for a baremetal rental
+      parameters:
+      - $ref: '#/components/parameters/BareMetalRentalId'
+      responses:
+        '200':
+          description: Bare-metal rental details.
+    delete:
+      tags:
+      - Bare Metal
+      operationId: terminateBareMetalRental
+      summary: Terminate a bare-metal rental
+      parameters:
+      - $ref: '#/components/parameters/BareMetalRentalId'
+      responses:
+        '204':
+          description: Bare-metal rental terminated.
+    patch:
+      tags:
+      - Bare Metal
+      operationId: modifyBareMetalRental
+      summary: Modify baremetal rental details
+      parameters:
+      - $ref: '#/components/parameters/BareMetalRentalId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchBareMetalRental'
+      responses:
+        '200':
+          description: Updated bare-metal rental details.
+  /bare-metal/{baremetal_rental_id}/power-status:
+    put:
+      tags:
+      - Bare Metal
+      operationId: setBareMetalPowerStatus
+      summary: Start or stop the nodes in a baremetal rental
+      parameters:
+      - $ref: '#/components/parameters/BareMetalRentalId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaremetalPowerSchema'
+      responses:
+        '200':
+          description: Power status change accepted.
+  /bare-metal/{baremetal_rental_id}/reboot:
+    post:
+      tags:
+      - Bare Metal
+      operationId: rebootBareMetalNodes
+      summary: Reboot specific nodes in a baremetal rental
+      parameters:
+      - $ref: '#/components/parameters/BareMetalRentalId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RebootBaremetalSchema'
+      responses:
+        '200':
+          description: Reboot accepted.
+  /bare-metal/{baremetal_rental_id}/remove-nodes:
+    patch:
+      tags:
+      - Bare Metal
+      operationId: removeBareMetalNodes
+      summary: Remove certain nodes in a rental
+      parameters:
+      - $ref: '#/components/parameters/BareMetalRentalId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveNodesSchema'
+      responses:
+        '200':
+          description: Nodes removed.
+components:
+  schemas:
+    SlurmUserRequest:
+      type: object
+      required:
+      - username
+      properties:
+        username:
+          type: string
+        public_key:
+          type: string
+    BareMetalDeployConfig:
+      type: object
+      required:
+      - location_id
+      - gpu_count
+      - name
+      properties:
+        location_id:
+          type: string
+          format: uuid
+        gpu_count:
+          type: integer
+          multipleOf: 8
+          minimum: 8
+          description: Number of GPUs, in multiples of eight.
+        name:
+          type: string
+          example: My Baremetal Rental
+    BareMetalLocation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    RebootBaremetalSchema:
+      type: object
+      properties:
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+    DeployBareResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+    RemoveNodesSchema:
+      type: object
+      properties:
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+    PatchBareMetalRental:
+      type: object
+      properties:
+        name:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    PaginatedBareMetalLocation:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BareMetalLocation'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    BaremetalPowerSchema:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - start
+          - stop
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+  parameters:
+    ClusterId:
+      name: cluster_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    BareMetalRentalId:
+      name: baremetal_rental_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    apiTokenAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token created on the Developers page of the Voltage Park dashboard. Tokens are valid for one year before expiring.

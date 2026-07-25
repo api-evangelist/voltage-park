@@ -1,0 +1,74 @@
+openapi: 3.0.1
+info:
+  title: Voltage Park On-Demand Bare Metal Billing API
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  termsOfService: https://www.voltagepark.com/legal
+  contact:
+    name: Voltage Park Support
+    url: https://support.voltagepark.com
+  version: 0.0.1
+servers:
+- url: https://cloud-api.voltagepark.com/api/v1
+security:
+- apiTokenAuth: []
+tags:
+- name: Billing
+  description: Hourly rates and historical billing transactions.
+paths:
+  /billing/hourly-rate:
+    get:
+      tags:
+      - Billing
+      operationId: getHourlyRate
+      summary: Current rate for active rentals
+      responses:
+        '200':
+          description: Combined hourly rate for active rentals.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HourlyRateDetails'
+  /billing/transactions:
+    get:
+      tags:
+      - Billing
+      operationId: listTransactions
+      summary: Historical organization billing log
+      responses:
+        '200':
+          description: Paginated historical billing transactions.
+  /billing/reports/{year}/{month}/transactions:
+    get:
+      tags:
+      - Billing
+      operationId: getMonthlyTransactions
+      summary: Monthly billing log
+      parameters:
+      - name: year
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: month
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Monthly billing transactions report.
+components:
+  schemas:
+    HourlyRateDetails:
+      type: object
+      required:
+      - rate_hourly
+      properties:
+        rate_hourly:
+          type: string
+          example: '2.500000'
+  securitySchemes:
+    apiTokenAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token created on the Developers page of the Voltage Park dashboard. Tokens are valid for one year before expiring.

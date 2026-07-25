@@ -1,0 +1,332 @@
+openapi: 3.0.1
+info:
+  title: Voltage Park On-Demand Bare Metal Virtual Machines API
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  termsOfService: https://www.voltagepark.com/legal
+  contact:
+    name: Voltage Park Support
+    url: https://support.voltagepark.com
+  version: 0.0.1
+servers:
+- url: https://cloud-api.voltagepark.com/api/v1
+security:
+- apiTokenAuth: []
+tags:
+- name: Virtual Machines
+  description: Deploy and manage on-demand GPU virtual machines and instant VMs.
+paths:
+  /virtual-machines/instant/locations:
+    get:
+      tags:
+      - Virtual Machines
+      operationId: getInstantVmLocations
+      summary: List available locations for instant VMs
+      responses:
+        '200':
+          description: Paginated list of instant-deploy locations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedInstantDeployLocation'
+  /virtual-machines/instant/locations/{location_id}:
+    get:
+      tags:
+      - Virtual Machines
+      operationId: getInstantVmLocationDetails
+      summary: Location details for instant VMs
+      parameters:
+      - $ref: '#/components/parameters/LocationId'
+      responses:
+        '200':
+          description: Instant-deploy location details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstantDeployLocation'
+  /virtual-machines/instant:
+    post:
+      tags:
+      - Virtual Machines
+      operationId: deployInstantVm
+      summary: Deploy an instant virtual machine
+      description: Using a preset found at `/virtual-machines/instant/locations`, deploy a preconfigured virtual machine in seconds.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantVMConfig'
+      responses:
+        '201':
+          description: Instant VM deployed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstantVMResult'
+  /virtual-machines/:
+    get:
+      tags:
+      - Virtual Machines
+      operationId: listVirtualMachines
+      summary: List of owned, unterminated virtual machines
+      responses:
+        '200':
+          description: Paginated list of virtual machines.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedVirtualMachine'
+  /virtual-machines/{virtual_machine_id}:
+    get:
+      tags:
+      - Virtual Machines
+      operationId: getVirtualMachine
+      summary: Details for an unterminated virtual machine
+      parameters:
+      - $ref: '#/components/parameters/VirtualMachineId'
+      responses:
+        '200':
+          description: Virtual machine details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualMachineDetails'
+    patch:
+      tags:
+      - Virtual Machines
+      operationId: modifyVirtualMachine
+      summary: Modify a virtual machine's details
+      parameters:
+      - $ref: '#/components/parameters/VirtualMachineId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchVirtualMachine'
+      responses:
+        '200':
+          description: Updated virtual machine details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualMachineDetails'
+    delete:
+      tags:
+      - Virtual Machines
+      operationId: terminateVirtualMachine
+      summary: Terminate a virtual machine
+      parameters:
+      - $ref: '#/components/parameters/VirtualMachineId'
+      responses:
+        '204':
+          description: Virtual machine terminated.
+  /virtual-machines/{virtual_machine_id}/power-status:
+    put:
+      tags:
+      - Virtual Machines
+      operationId: setVirtualMachinePowerStatus
+      summary: Start or stop a virtual machine
+      parameters:
+      - $ref: '#/components/parameters/VirtualMachineId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VMPowerSchema'
+      responses:
+        '200':
+          description: Power status change accepted.
+  /virtual-machines/{virtual_machine_id}/relocate:
+    post:
+      tags:
+      - Virtual Machines
+      operationId: relocateVirtualMachine
+      summary: Relocate a stopped-disassociated virtual machine to a new hostnode
+      parameters:
+      - $ref: '#/components/parameters/VirtualMachineId'
+      responses:
+        '200':
+          description: Relocation accepted.
+  /virtual-machines/{virtual_machine_id}/port-forward:
+    post:
+      tags:
+      - Virtual Machines
+      operationId: createPortForward
+      summary: Request port forwarding for a virtual machine
+      parameters:
+      - $ref: '#/components/parameters/VirtualMachineId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortForwardConfig'
+      responses:
+        '201':
+          description: Port forwarding created.
+    delete:
+      tags:
+      - Virtual Machines
+      operationId: deletePortForward
+      summary: Delete port forwarding(s) for a virtual machine
+      parameters:
+      - $ref: '#/components/parameters/VirtualMachineId'
+      responses:
+        '204':
+          description: Port forwarding deleted.
+components:
+  schemas:
+    PatchVirtualMachine:
+      type: object
+      properties:
+        name:
+          type: string
+    InstantVMResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+    PortForwardConfig:
+      type: object
+      properties:
+        internal_port:
+          type: integer
+        external_port:
+          type: integer
+    VirtualMachineDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        hostnode_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - ondem
+          - spot
+          - subscription
+        status:
+          type: string
+          enum:
+          - Running
+          - StoppedDisassociated
+          - Stopped
+          - Terminated
+          - Outbid
+          - Relocating
+        name:
+          type: string
+        operating_system:
+          type: string
+          enum:
+          - Ubuntu 20.04 LTS
+          - Ubuntu 22.04 LTS
+          - Ubuntu 24.04 LTS
+          - TensorML 20 PyTorch
+          - TensorML 24 PyTorch
+          - Windows 10
+        public_ip:
+          type: string
+          nullable: true
+        pricing:
+          $ref: '#/components/schemas/VirtualMachinePricing'
+    InstantVMConfig:
+      type: object
+      required:
+      - config_id
+      - name
+      properties:
+        config_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: My Instant Virtual Machine
+        password:
+          type: string
+          minLength: 8
+          nullable: true
+        cloudinit_script:
+          type: string
+          nullable: true
+    PaginatedInstantDeployLocation:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantDeployLocation'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    VMPowerSchema:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - start
+          - stop
+    PaginatedVirtualMachine:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualMachineDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    InstantDeployLocation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    VirtualMachinePricing:
+      type: object
+      properties:
+        rate_hourly:
+          type: string
+          example: '2.500000'
+  parameters:
+    LocationId:
+      name: location_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    VirtualMachineId:
+      name: virtual_machine_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    apiTokenAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token created on the Developers page of the Voltage Park dashboard. Tokens are valid for one year before expiring.
