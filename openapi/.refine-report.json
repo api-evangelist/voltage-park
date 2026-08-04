@@ -1,0 +1,26 @@
+{
+  "provider": "voltage-park",
+  "sources": [
+    "voltage-park-bare-metal-api-openapi.yml",
+    "voltage-park-billing-api-openapi.yml",
+    "voltage-park-locations-api-openapi.yml",
+    "voltage-park-organization-api-openapi.yml",
+    "voltage-park-storage-api-openapi.yml",
+    "voltage-park-validation-api-openapi.yml",
+    "voltage-park-virtual-machines-api-openapi.yml"
+  ],
+  "outputs": [
+    "voltage-park-bare-metal-api-openapi.yml",
+    "voltage-park-billing-api-openapi.yml",
+    "voltage-park-locations-api-openapi.yml",
+    "voltage-park-organization-api-openapi.yml",
+    "voltage-park-storage-api-openapi.yml",
+    "voltage-park-validation-api-openapi.yml",
+    "voltage-park-virtual-machines-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
