@@ -1,0 +1,217 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voltage Park On-Demand Bare Metal Virtual Machines API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Virtual Machines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available locations for instant VMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/instant/locations"
+          },
+          "docs": "List available locations for instant VMs"
+        },
+        {
+          "info": {
+            "name": "Location details for instant VMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/instant/locations/:location_id",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Location details for instant VMs"
+        },
+        {
+          "info": {
+            "name": "Deploy an instant virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/instant",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Using a preset found at `/virtual-machines/instant/locations`, deploy a preconfigured virtual machine in seconds."
+        },
+        {
+          "info": {
+            "name": "List of owned, unterminated virtual machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/"
+          },
+          "docs": "List of owned, unterminated virtual machines"
+        },
+        {
+          "info": {
+            "name": "Details for an unterminated virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/:virtual_machine_id",
+            "params": [
+              {
+                "name": "virtual_machine_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Details for an unterminated virtual machine"
+        },
+        {
+          "info": {
+            "name": "Modify a virtual machine's details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/:virtual_machine_id",
+            "params": [
+              {
+                "name": "virtual_machine_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a virtual machine's details"
+        },
+        {
+          "info": {
+            "name": "Terminate a virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/:virtual_machine_id",
+            "params": [
+              {
+                "name": "virtual_machine_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Terminate a virtual machine"
+        },
+        {
+          "info": {
+            "name": "Start or stop a virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/:virtual_machine_id/power-status",
+            "params": [
+              {
+                "name": "virtual_machine_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start or stop a virtual machine"
+        },
+        {
+          "info": {
+            "name": "Relocate a stopped-disassociated virtual machine to a new hostnode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/:virtual_machine_id/relocate",
+            "params": [
+              {
+                "name": "virtual_machine_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Relocate a stopped-disassociated virtual machine to a new hostnode"
+        },
+        {
+          "info": {
+            "name": "Request port forwarding for a virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/:virtual_machine_id/port-forward",
+            "params": [
+              {
+                "name": "virtual_machine_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request port forwarding for a virtual machine"
+        },
+        {
+          "info": {
+            "name": "Delete port forwarding(s) for a virtual machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/virtual-machines/:virtual_machine_id/port-forward",
+            "params": [
+              {
+                "name": "virtual_machine_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete port forwarding(s) for a virtual machine"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1071 @@
+{
+  "item": [
+    {
+      "id": "c04a8b53-de9c-4c16-8350-337b912cdcb5",
+      "name": "Virtual Machines",
+      "description": {
+        "content": "Deploy and manage on-demand GPU virtual machines and instant VMs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf44beba-6519-4ae5-9a91-8733c2f5c7b0",
+          "name": "List available locations for instant VMs",
+          "request": {
+            "name": "List available locations for instant VMs",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                "instant",
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac8ce437-5def-4908-8053-ff2bdcf4149a",
+              "name": "Paginated list of instant-deploy locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    "instant",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"f85e273a-66c6-c398-1659-67361c4be0ed\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"063ecb20-e477-88e2-f6e4-1fbb4132596e\",\n      \"name\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 248,\n    \"page\": 5961,\n    \"per_page\": 8635\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aef4da2f-48e1-4c2e-9f35-42c85a746718",
+          "name": "Location details for instant VMs",
+          "request": {
+            "name": "Location details for instant VMs",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                "instant",
+                "locations",
+                ":location_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "location_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "848f0b7d-79d1-4890-bcd6-38f0cef6f24b",
+              "name": "Instant-deploy location details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    "instant",
+                    "locations",
+                    ":location_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "location_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c045f31d-20d9-01dc-ba16-23bd76b7bcf0\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b8ec83d-aea4-4489-8059-8bae6fb9bce3",
+          "name": "Deploy an instant virtual machine",
+          "request": {
+            "name": "Deploy an instant virtual machine",
+            "description": {
+              "content": "Using a preset found at `/virtual-machines/instant/locations`, deploy a preconfigured virtual machine in seconds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-machines",
+                "instant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"config_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"cloudinit_script\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4cf762e4-7fa0-4ff9-80d0-49450e3ba69c",
+              "name": "Instant VM deployed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    "instant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config_id\": \"<uuid>\",\n  \"name\": \"My Instant Virtual Machine\",\n  \"password\": \"<string>\",\n  \"cloudinit_script\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"cffd7150-f8c0-9dbe-c794-fbef085e088d\",\n  \"name\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40c54e60-2194-40e8-9c5c-bda98d205fe0",
+          "name": "List of owned, unterminated virtual machines",
+          "request": {
+            "name": "List of owned, unterminated virtual machines",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4cd2763e-bea8-4846-a6fd-16b3e9c5ae23",
+              "name": "Paginated list of virtual machines.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"6572d0bd-7cdc-77ef-c0f4-9cb22b7cdcee\",\n      \"hostnode_id\": \"75d483eb-ad1b-f549-d53e-dabd9925261c\",\n      \"type\": \"spot\",\n      \"status\": \"Running\",\n      \"name\": \"string\",\n      \"operating_system\": \"Ubuntu 20.04 LTS\",\n      \"public_ip\": \"string\",\n      \"pricing\": {\n        \"rate_hourly\": \"2.500000\"\n      }\n    },\n    {\n      \"id\": \"5004a452-adde-94e1-bf3b-f8bd54d67eab\",\n      \"hostnode_id\": \"e33d5522-051f-29fc-630f-475851c3331a\",\n      \"type\": \"spot\",\n      \"status\": \"Relocating\",\n      \"name\": \"string\",\n      \"operating_system\": \"Ubuntu 24.04 LTS\",\n      \"public_ip\": \"string\",\n      \"pricing\": {\n        \"rate_hourly\": \"2.500000\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total\": 2372,\n    \"page\": 2163,\n    \"per_page\": 3276\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de5d78bd-f6dd-4bac-909f-04cad661eb21",
+          "name": "Details for an unterminated virtual machine",
+          "request": {
+            "name": "Details for an unterminated virtual machine",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                ":virtual_machine_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "virtual_machine_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80cd49bd-87d1-41f3-8cc3-713963829c2d",
+              "name": "Virtual machine details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ":virtual_machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_machine_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"907a7f19-a656-5638-3418-a574bbd98479\",\n  \"hostnode_id\": \"0229a413-c6c6-e0eb-6873-a68ca552e751\",\n  \"type\": \"spot\",\n  \"status\": \"Stopped\",\n  \"name\": \"string\",\n  \"operating_system\": \"TensorML 20 PyTorch\",\n  \"public_ip\": \"string\",\n  \"pricing\": {\n    \"rate_hourly\": \"2.500000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91d29f08-6b53-4c82-8dca-39d42e0cb839",
+          "name": "Modify a virtual machine's details",
+          "request": {
+            "name": "Modify a virtual machine's details",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                ":virtual_machine_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "virtual_machine_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe180f81-ebea-471e-b1b8-5857b92d5590",
+              "name": "Updated virtual machine details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ":virtual_machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_machine_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"907a7f19-a656-5638-3418-a574bbd98479\",\n  \"hostnode_id\": \"0229a413-c6c6-e0eb-6873-a68ca552e751\",\n  \"type\": \"spot\",\n  \"status\": \"Stopped\",\n  \"name\": \"string\",\n  \"operating_system\": \"TensorML 20 PyTorch\",\n  \"public_ip\": \"string\",\n  \"pricing\": {\n    \"rate_hourly\": \"2.500000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bad41970-28f6-491b-bf94-3ecf8e349bbf",
+          "name": "Terminate a virtual machine",
+          "request": {
+            "name": "Terminate a virtual machine",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                ":virtual_machine_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "virtual_machine_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9674cff9-48bb-40e2-a77e-156ed986c185",
+              "name": "Virtual machine terminated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ":virtual_machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_machine_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9123c910-c2d3-4ad0-9e1f-3d047d331c81",
+          "name": "Start or stop a virtual machine",
+          "request": {
+            "name": "Start or stop a virtual machine",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                ":virtual_machine_id",
+                "power-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "virtual_machine_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fbc6fff5-522c-4e2e-810b-2a6f88b62daa",
+              "name": "Power status change accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ":virtual_machine_id",
+                    "power-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_machine_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1537f103-2a7c-4698-bc73-ce66fb224dbb",
+          "name": "Relocate a stopped-disassociated virtual machine to a new hostnode",
+          "request": {
+            "name": "Relocate a stopped-disassociated virtual machine to a new hostnode",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                ":virtual_machine_id",
+                "relocate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "virtual_machine_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc1447ae-640a-41b9-8e48-3a18465fc30a",
+              "name": "Relocation accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ":virtual_machine_id",
+                    "relocate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_machine_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77e3c7b4-1d62-4639-ae5e-1c23a6d964dd",
+          "name": "Request port forwarding for a virtual machine",
+          "request": {
+            "name": "Request port forwarding for a virtual machine",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                ":virtual_machine_id",
+                "port-forward"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "virtual_machine_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"internal_port\": \"<integer>\",\n  \"external_port\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cbccdc34-8fb9-4108-90d0-59b7b6a2f4fe",
+              "name": "Port forwarding created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ":virtual_machine_id",
+                    "port-forward"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_machine_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"internal_port\": \"<integer>\",\n  \"external_port\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3ee3a9f-9485-415e-bc8e-011356d47768",
+          "name": "Delete port forwarding(s) for a virtual machine",
+          "request": {
+            "name": "Delete port forwarding(s) for a virtual machine",
+            "description": {},
+            "url": {
+              "path": [
+                "virtual-machines",
+                ":virtual_machine_id",
+                "port-forward"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "virtual_machine_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e401d58-db73-4693-a023-3950de0472da",
+              "name": "Port forwarding deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ":virtual_machine_id",
+                    "port-forward"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_machine_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud-api.voltagepark.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8280e380-7346-4e65-b5b6-be356541c987",
+    "name": "Voltage Park On-Demand Bare Metal Virtual Machines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.\n\nContact Support:\n Name: Voltage Park Support",
+      "type": "text/plain"
+    }
+  }
+}

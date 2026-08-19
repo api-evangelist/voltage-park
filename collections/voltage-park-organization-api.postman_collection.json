@@ -1,0 +1,643 @@
+{
+  "item": [
+    {
+      "id": "edd5a632-3d00-441f-bbf6-dad965b1399b",
+      "name": "Organization",
+      "description": {
+        "content": "Organization details, address, and SSH keys.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d509ef2d-745e-495f-9dc4-7cabb0298fda",
+          "name": "Organization details",
+          "request": {
+            "name": "Organization details",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64817b28-ed00-4104-a866-ea83beffe05a",
+              "name": "Organization details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"036967f9-20b5-5972-c72b-9bc4b9cfa9f4\",\n  \"name\": \"My VPOD Organization\",\n  \"billing_notification_target_emails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"low_balance_emails_enabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68487d53-2413-4d62-a69f-bf131654f8a0",
+          "name": "Update organization details",
+          "request": {
+            "name": "Update organization details",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"billing_notification_target_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"low_balance_emails_enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8431711e-82a6-445e-a734-9202df04c06f",
+              "name": "Updated organization details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"billing_notification_target_emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"low_balance_emails_enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"11538a44-05b5-9164-54ed-723be240e2e8\",\n  \"name\": \"My VPOD Organization\",\n  \"billing_notification_target_emails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"low_balance_emails_enabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "813886f3-6bc5-4a72-8e50-bea407dd8942",
+          "name": "List of SSH public keys under your organization",
+          "request": {
+            "name": "List of SSH public keys under your organization",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "ssh-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8cd8f811-9e29-49af-91a4-2297e746faf3",
+              "name": "Paginated list of SSH keys.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "ssh-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"a9dbfb6c-322e-b0de-f809-9f25beb30e02\",\n      \"name\": \"My-SSH-Public-Key\",\n      \"content\": \"string\"\n    },\n    {\n      \"id\": \"16d07542-ab23-992c-f3d5-d4ec486f9190\",\n      \"name\": \"My-SSH-Public-Key\",\n      \"content\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 5800,\n    \"page\": 7759,\n    \"per_page\": 2599\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab81b61a-ec1c-42e1-a03c-132a6274bcc3",
+          "name": "Add new SSH public key to your organization",
+          "request": {
+            "name": "Add new SSH public key to your organization",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "ssh-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"content\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd9cef56-9058-4ca3-b24b-b70d05b35eee",
+              "name": "SSH key added.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "ssh-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My-SSH-Public-Key\",\n  \"content\": \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDAKOgHv82A6Oi7AWLvBC9N...\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"4f49b31e-c322-4e26-c5f9-a571ba82bb3b\",\n  \"name\": \"My-SSH-Public-Key\",\n  \"content\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cae24170-5403-4b7d-ae42-e6e46658ac1e",
+          "name": "Remove an SSH key from your organization",
+          "request": {
+            "name": "Remove an SSH key from your organization",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "ssh-keys",
+                ":ssh_key_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "ssh_key_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "208fdaf1-413c-4317-a8fa-a5c8eb02d6b5",
+              "name": "SSH key removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "ssh-keys",
+                    ":ssh_key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "ssh_key_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65b6b7bc-3c0d-463b-a7ef-cd4eb5dc017a",
+          "name": "Organization address",
+          "request": {
+            "name": "Organization address",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "523df073-3b1e-43d5-9fe6-e83b27472d37",
+              "name": "Organization address.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"line1\": \"string\",\n  \"line2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"postal_code\": \"string\",\n  \"country\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36078d56-fbf3-41f0-8433-7b4c515f3e32",
+          "name": "Set organization address",
+          "request": {
+            "name": "Set organization address",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"line1\": \"<string>\",\n  \"line2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"country\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d3833563-c983-4481-9dd6-e54e4a7d6cd8",
+              "name": "Organization address set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"line1\": \"<string>\",\n  \"line2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"country\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud-api.voltagepark.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "40799cce-3aae-4e73-8a22-37e7c526dbea",
+    "name": "Voltage Park On-Demand Bare Metal Organization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.\n\nContact Support:\n Name: Voltage Park Support",
+      "type": "text/plain"
+    }
+  }
+}

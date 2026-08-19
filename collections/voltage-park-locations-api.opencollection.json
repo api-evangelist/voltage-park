@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voltage Park On-Demand Bare Metal Locations API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of available locations and available HostNodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/locations/"
+          },
+          "docs": "List of available locations and available HostNodes"
+        },
+        {
+          "info": {
+            "name": "Details for a given location by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/locations/:location_id",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Details for a given location by ID"
+        },
+        {
+          "info": {
+            "name": "Details and available resources for a given HostNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/hostnodes/:hostnode_id",
+            "params": [
+              {
+                "name": "hostnode_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Details and available resources for a given HostNode"
+        },
+        {
+          "info": {
+            "name": "List Instant Deploy Presets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/instant-deploy-presets/"
+          },
+          "docs": "List Instant Deploy Presets"
+        },
+        {
+          "info": {
+            "name": "Get Instant Deploy Preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/instant-deploy-presets/:instant_deploy_preset_id",
+            "params": [
+              {
+                "name": "instant_deploy_preset_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Instant Deploy Preset"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

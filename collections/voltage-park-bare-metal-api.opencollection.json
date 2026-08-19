@@ -1,0 +1,270 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voltage Park On-Demand Bare Metal API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bare Metal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of available baremetal locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/locations"
+          },
+          "docs": "List of available baremetal locations"
+        },
+        {
+          "info": {
+            "name": "Get more detailed information about baremetal locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/detailed-locations"
+          },
+          "docs": "Get more detailed information about baremetal locations"
+        },
+        {
+          "info": {
+            "name": "List of owned, unterminated baremetal machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/"
+          },
+          "docs": "List of owned, unterminated baremetal machines"
+        },
+        {
+          "info": {
+            "name": "Provision a new bare-metal server rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provision a new bare-metal server rental"
+        },
+        {
+          "info": {
+            "name": "Information about kubernetes deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes"
+          },
+          "docs": "Information about kubernetes deployments"
+        },
+        {
+          "info": {
+            "name": "Get the health status of a kubernetes cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes/:cluster_id/health",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the health status of a kubernetes cluster"
+        },
+        {
+          "info": {
+            "name": "Add or update Slurm user for a Kubernetes cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes/:cluster_id/slurm-user",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update Slurm user for a Kubernetes cluster"
+        },
+        {
+          "info": {
+            "name": "Get details for a specific addon for a Kubernetes cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/kubernetes/:cluster_id/addons/:addon",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "addon",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details for a specific addon for a Kubernetes cluster"
+        },
+        {
+          "info": {
+            "name": "Get details for a baremetal rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/:baremetal_rental_id",
+            "params": [
+              {
+                "name": "baremetal_rental_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details for a baremetal rental"
+        },
+        {
+          "info": {
+            "name": "Modify baremetal rental details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/:baremetal_rental_id",
+            "params": [
+              {
+                "name": "baremetal_rental_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify baremetal rental details"
+        },
+        {
+          "info": {
+            "name": "Terminate a bare-metal rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/:baremetal_rental_id",
+            "params": [
+              {
+                "name": "baremetal_rental_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Terminate a bare-metal rental"
+        },
+        {
+          "info": {
+            "name": "Start or stop the nodes in a baremetal rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/:baremetal_rental_id/power-status",
+            "params": [
+              {
+                "name": "baremetal_rental_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start or stop the nodes in a baremetal rental"
+        },
+        {
+          "info": {
+            "name": "Reboot specific nodes in a baremetal rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/:baremetal_rental_id/reboot",
+            "params": [
+              {
+                "name": "baremetal_rental_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reboot specific nodes in a baremetal rental"
+        },
+        {
+          "info": {
+            "name": "Remove certain nodes in a rental",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/bare-metal/:baremetal_rental_id/remove-nodes",
+            "params": [
+              {
+                "name": "baremetal_rental_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove certain nodes in a rental"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

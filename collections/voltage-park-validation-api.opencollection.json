@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voltage Park On-Demand Bare Metal Validation API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate a cloud init script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/validate/cloudinit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate a cloud init script"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

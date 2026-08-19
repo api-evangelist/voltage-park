@@ -1,0 +1,454 @@
+{
+  "item": [
+    {
+      "id": "280fe5c5-1c43-4272-9d21-351ce1d57c8b",
+      "name": "Locations",
+      "description": {
+        "content": "Locations, host nodes, and instant-deploy presets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f6160bc-86e6-4b96-8a3f-79ee0bdfb76c",
+          "name": "List of available locations and available HostNodes",
+          "request": {
+            "name": "List of available locations and available HostNodes",
+            "description": {},
+            "url": {
+              "path": [
+                "locations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d055bf1d-1659-440f-82ef-cc6bd8b73188",
+              "name": "Paginated list of locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"e8faf6b7-e5cb-ade1-7f9d-47aff886d999\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"9cabb61b-a476-e144-af75-229bd48896e3\",\n      \"name\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 3797,\n    \"page\": 2030,\n    \"per_page\": 7332\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0563250-a29e-45e6-8c36-9398e0ee5150",
+          "name": "Details for a given location by ID",
+          "request": {
+            "name": "Details for a given location by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "locations",
+                ":location_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "location_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77e541cc-9dce-468e-ab86-368faed48469",
+              "name": "Location details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":location_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "location_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"37bc7125-8675-0651-2183-630b5f461cbc\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38939a24-8ab6-46e1-adfb-272a249943c6",
+          "name": "Details and available resources for a given HostNode",
+          "request": {
+            "name": "Details and available resources for a given HostNode",
+            "description": {},
+            "url": {
+              "path": [
+                "hostnodes",
+                ":hostnode_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "hostnode_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7645aa83-3b2b-46bd-9364-6a275ec68b74",
+              "name": "Host node details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hostnodes",
+                    ":hostnode_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "hostnode_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"37bc7125-8675-0651-2183-630b5f461cbc\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79c5f7e9-55fc-470b-9748-443b74a33c2d",
+          "name": "List Instant Deploy Presets",
+          "request": {
+            "name": "List Instant Deploy Presets",
+            "description": {},
+            "url": {
+              "path": [
+                "instant-deploy-presets",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6048d1fa-3792-40d0-a4f0-87ef2014f086",
+              "name": "Instant deploy presets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instant-deploy-presets",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d262594b-7756-4646-ac4e-6b991c378490",
+          "name": "Get Instant Deploy Preset",
+          "request": {
+            "name": "Get Instant Deploy Preset",
+            "description": {},
+            "url": {
+              "path": [
+                "instant-deploy-presets",
+                ":instant_deploy_preset_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "instant_deploy_preset_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a5364cf-81cb-4b9e-aaa1-edccbc55790c",
+              "name": "Instant deploy preset details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instant-deploy-presets",
+                    ":instant_deploy_preset_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "instant_deploy_preset_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud-api.voltagepark.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eb66ca71-facd-4bd5-9057-2f695963b1dd",
+    "name": "Voltage Park On-Demand Bare Metal Locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.\n\nContact Support:\n Name: Voltage Park Support",
+      "type": "text/plain"
+    }
+  }
+}

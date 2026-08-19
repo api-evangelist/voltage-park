@@ -1,0 +1,288 @@
+{
+  "item": [
+    {
+      "id": "74a09a74-beb4-4e5d-b09c-1e37959b7a1c",
+      "name": "Billing",
+      "description": {
+        "content": "Hourly rates and historical billing transactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2885cf7-2c32-4215-8632-159383dbefda",
+          "name": "Current rate for active rentals",
+          "request": {
+            "name": "Current rate for active rentals",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "hourly-rate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31fc5dbd-bf53-4ff2-844a-763520197d68",
+              "name": "Combined hourly rate for active rentals.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "hourly-rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rate_hourly\": \"2.500000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fe5ab79-7e19-4421-8216-7afc695ea3be",
+          "name": "Historical organization billing log",
+          "request": {
+            "name": "Historical organization billing log",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1df7c230-9387-4348-8222-aa116497ddd8",
+              "name": "Paginated historical billing transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09dcf50c-12a6-4188-9c06-904dd7586af4",
+          "name": "Monthly billing log",
+          "request": {
+            "name": "Monthly billing log",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "reports",
+                ":year",
+                ":month",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "year",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "month",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b53610ae-5f87-4916-b0ca-e8121bdd396b",
+              "name": "Monthly billing transactions report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "reports",
+                    ":year",
+                    ":month",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "year",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "month",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud-api.voltagepark.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ec12ea6c-7cd9-46c0-bd0c-3e8914789754",
+    "name": "Voltage Park On-Demand Bare Metal Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.\n\nContact Support:\n Name: Voltage Park Support",
+      "type": "text/plain"
+    }
+  }
+}

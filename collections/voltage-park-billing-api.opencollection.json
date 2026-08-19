@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voltage Park On-Demand Bare Metal Billing API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Current rate for active rentals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/billing/hourly-rate"
+          },
+          "docs": "Current rate for active rentals"
+        },
+        {
+          "info": {
+            "name": "Historical organization billing log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/billing/transactions"
+          },
+          "docs": "Historical organization billing log"
+        },
+        {
+          "info": {
+            "name": "Monthly billing log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/billing/reports/:year/:month/transactions",
+            "params": [
+              {
+                "name": "year",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Monthly billing log"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voltage Park On-Demand Bare Metal Storage API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Storage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch hourly rate for storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/hourly-rate"
+          },
+          "docs": "Fetch hourly rate for storage"
+        },
+        {
+          "info": {
+            "name": "List of available storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/"
+          },
+          "docs": "List of available storage"
+        },
+        {
+          "info": {
+            "name": "Create shared storage volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create shared storage volume"
+        },
+        {
+          "info": {
+            "name": "Get storage by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/:storage_id",
+            "params": [
+              {
+                "name": "storage_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get storage by id"
+        },
+        {
+          "info": {
+            "name": "Update storage volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/:storage_id",
+            "params": [
+              {
+                "name": "storage_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update storage volume"
+        },
+        {
+          "info": {
+            "name": "Terminate a storage volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/:storage_id",
+            "params": [
+              {
+                "name": "storage_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Terminate a storage volume"
+        },
+        {
+          "info": {
+            "name": "Update NFS squash for a storage volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/storage/:storage_id/nfs-squash",
+            "params": [
+              {
+                "name": "storage_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update NFS squash for a storage volume"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

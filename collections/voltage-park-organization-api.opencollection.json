@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voltage Park On-Demand Bare Metal Organization API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Organization details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/"
+          },
+          "docs": "Organization details"
+        },
+        {
+          "info": {
+            "name": "Update organization details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update organization details"
+        },
+        {
+          "info": {
+            "name": "List of SSH public keys under your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/ssh-keys"
+          },
+          "docs": "List of SSH public keys under your organization"
+        },
+        {
+          "info": {
+            "name": "Add new SSH public key to your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/ssh-keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new SSH public key to your organization"
+        },
+        {
+          "info": {
+            "name": "Remove an SSH key from your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/ssh-keys/:ssh_key_id",
+            "params": [
+              {
+                "name": "ssh_key_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove an SSH key from your organization"
+        },
+        {
+          "info": {
+            "name": "Organization address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/address"
+          },
+          "docs": "Organization address"
+        },
+        {
+          "info": {
+            "name": "Set organization address",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud-api.voltagepark.com/api/v1/organization/address",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set organization address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
