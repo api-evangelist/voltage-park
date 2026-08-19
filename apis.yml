@@ -30,7 +30,7 @@ tags:
 - Bare Metal
 created: '2026-06-21'
 modified: '2026-06-21'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: voltage-park:voltage-park-bare-metal-api
   name: Voltage Park Bare Metal API
