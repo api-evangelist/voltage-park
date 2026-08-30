@@ -1,0 +1,35 @@
+slug: voltage-park
+provider: Voltage Park
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Electrical Components & Equipment
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Bare Metal
+  spec_file: voltage-park-bare-metal-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: POST /bare-metal/ 'Provision a new bare-metal server rental'; DELETE 'Terminate a bare-metal
+    rental'; PUT '/power-status' 'Start or stop the nodes in a baremetal rental'
+  reason: Provisioning, modification, termination and Kubernetes cluster management of GPU compute servers
+    is squarely compute/cloud infrastructure management.
+- tag: Virtual Machines
+  spec_file: voltage-park-virtual-machines-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /virtual-machines/instant deployInstantVm "Deploy an instant virtual machine"; "Start
+    or stop a virtual machine"
+  reason: Deploys, modifies, powers, relocates and terminates GPU virtual machines — compute/cloud infrastructure
+    provisioning and operation, mapping to IT Infrastructure Management.

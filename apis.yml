@@ -171,6 +171,9 @@ apis:
   - type: Documentation
     url: https://docs.voltagepark.com/on-demand/deploy-gpus
 common:
+- type: CapabilityMap
+  url: capabilities/voltage-park-capability-edges.yml
+  name: Voltage Park Business Capability Map
 - type: AgenticAccess
   url: agentic-access/voltage-park-agentic-access.yml
 - type: TrustCenter
