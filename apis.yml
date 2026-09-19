@@ -87,6 +87,8 @@ apis:
   humanURL: https://docs.voltagepark.com/on-demand/api
   baseURL: https://cloud-api.voltagepark.com/api/v1
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
