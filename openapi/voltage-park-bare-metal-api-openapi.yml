@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Voltage Park On-Demand Bare Metal API
-  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines.
   termsOfService: https://www.voltagepark.com/legal
   contact:
     name: Voltage Park Support
@@ -207,6 +207,31 @@ paths:
           description: Nodes removed.
 components:
   schemas:
+    DeployBareResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+    BaremetalPowerSchema:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - start
+          - stop
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
     SlurmUserRequest:
       type: object
       required:
@@ -215,6 +240,20 @@ components:
         username:
           type: string
         public_key:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    PatchBareMetalRental:
+      type: object
+      properties:
+        name:
           type: string
     BareMetalDeployConfig:
       type: object
@@ -234,54 +273,6 @@ components:
         name:
           type: string
           example: My Baremetal Rental
-    BareMetalLocation:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-    RebootBaremetalSchema:
-      type: object
-      properties:
-        node_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-    DeployBareResult:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        status:
-          type: string
-    RemoveNodesSchema:
-      type: object
-      properties:
-        node_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-    PatchBareMetalRental:
-      type: object
-      properties:
-        name:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
     PaginatedBareMetalLocation:
       type: object
       properties:
@@ -291,21 +282,30 @@ components:
             $ref: '#/components/schemas/BareMetalLocation'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    BaremetalPowerSchema:
+    RebootBaremetalSchema:
       type: object
-      required:
-      - action
       properties:
-        action:
-          type: string
-          enum:
-          - start
-          - stop
         node_ids:
           type: array
           items:
             type: string
             format: uuid
+    RemoveNodesSchema:
+      type: object
+      properties:
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+    BareMetalLocation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
   parameters:
     ClusterId:
       name: cluster_id

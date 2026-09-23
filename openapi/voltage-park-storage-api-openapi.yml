@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Voltage Park On-Demand Bare Metal Storage API
-  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  title: Voltage Park On-Demand Storage API
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines.
   termsOfService: https://www.voltagepark.com/legal
   contact:
     name: Voltage Park Support
@@ -119,6 +119,11 @@ paths:
           description: NFS squash updated.
 components:
   schemas:
+    StorageRate:
+      type: object
+      properties:
+        rate_hourly:
+          type: string
     StorageDetails:
       type: object
       properties:
@@ -131,11 +136,6 @@ components:
           type: integer
         status:
           type: string
-    StorageRate:
-      type: object
-      properties:
-        rate_hourly:
-          type: string
     StorageUpdate:
       type: object
       properties:
@@ -143,26 +143,6 @@ components:
           type: string
         size_in_gb:
           type: integer
-    PaginatedStorage:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/StorageDetails'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    NFSSquashUpdate:
-      type: object
-      required:
-      - mode
-      properties:
-        mode:
-          type: string
-          enum:
-          - none
-          - root
-          - all
     Pagination:
       type: object
       properties:
@@ -195,6 +175,26 @@ components:
           items:
             type: string
             format: uuid
+    PaginatedStorage:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/StorageDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    NFSSquashUpdate:
+      type: object
+      required:
+      - mode
+      properties:
+        mode:
+          type: string
+          enum:
+          - none
+          - root
+          - all
   parameters:
     StorageId:
       name: storage_id

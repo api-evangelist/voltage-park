@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Voltage Park On-Demand Bare Metal Virtual Machines API
-  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines. The API lets developers deploy and manage instant VMs, bare-metal GPU rentals, SSH keys, shared storage, locations, billing, and organization settings. Requests authenticate with a bearer API token created on the Developers page of the Voltage Park dashboard; tokens are valid for one year. The On-Demand platform is served on TensorDock infrastructure.
+  title: Voltage Park On-Demand Virtual Machines API
+  description: The all-purpose management API for Voltage Park On-Demand, the GPU cloud offering on-demand and reserved NVIDIA H100 / H200 clusters as bare metal and virtual machines.
   termsOfService: https://www.voltagepark.com/legal
   contact:
     name: Voltage Park Support
@@ -178,11 +178,90 @@ paths:
           description: Port forwarding deleted.
 components:
   schemas:
+    VirtualMachinePricing:
+      type: object
+      properties:
+        rate_hourly:
+          type: string
+          example: '2.500000'
+    PortForwardConfig:
+      type: object
+      properties:
+        internal_port:
+          type: integer
+        external_port:
+          type: integer
+    VMPowerSchema:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - start
+          - stop
     PatchVirtualMachine:
       type: object
       properties:
         name:
           type: string
+    PaginatedInstantDeployLocation:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantDeployLocation'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    InstantDeployLocation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    InstantVMConfig:
+      type: object
+      required:
+      - config_id
+      - name
+      properties:
+        config_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: My Instant Virtual Machine
+        password:
+          type:
+          - string
+          - 'null'
+          minLength: 8
+        cloudinit_script:
+          type:
+          - string
+          - 'null'
+    PaginatedVirtualMachine:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualMachineDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     InstantVMResult:
       type: object
       properties:
@@ -193,13 +272,6 @@ components:
           type: string
         status:
           type: string
-    PortForwardConfig:
-      type: object
-      properties:
-        internal_port:
-          type: integer
-        external_port:
-          type: integer
     VirtualMachineDetails:
       type: object
       properties:
@@ -236,90 +308,21 @@ components:
           - TensorML 24 PyTorch
           - Windows 10
         public_ip:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         pricing:
           $ref: '#/components/schemas/VirtualMachinePricing'
-    InstantVMConfig:
-      type: object
-      required:
-      - config_id
-      - name
-      properties:
-        config_id:
-          type: string
-          format: uuid
-        name:
-          type: string
-          example: My Instant Virtual Machine
-        password:
-          type: string
-          minLength: 8
-          nullable: true
-        cloudinit_script:
-          type: string
-          nullable: true
-    PaginatedInstantDeployLocation:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/InstantDeployLocation'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    VMPowerSchema:
-      type: object
-      required:
-      - action
-      properties:
-        action:
-          type: string
-          enum:
-          - start
-          - stop
-    PaginatedVirtualMachine:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/VirtualMachineDetails'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    InstantDeployLocation:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
-    VirtualMachinePricing:
-      type: object
-      properties:
-        rate_hourly:
-          type: string
-          example: '2.500000'
   parameters:
-    LocationId:
-      name: location_id
+    VirtualMachineId:
+      name: virtual_machine_id
       in: path
       required: true
       schema:
         type: string
         format: uuid
-    VirtualMachineId:
-      name: virtual_machine_id
+    LocationId:
+      name: location_id
       in: path
       required: true
       schema:
