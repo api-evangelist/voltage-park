@@ -178,100 +178,6 @@ paths:
           description: Port forwarding deleted.
 components:
   schemas:
-    VirtualMachinePricing:
-      type: object
-      properties:
-        rate_hourly:
-          type: string
-          example: '2.500000'
-    PortForwardConfig:
-      type: object
-      properties:
-        internal_port:
-          type: integer
-        external_port:
-          type: integer
-    VMPowerSchema:
-      type: object
-      required:
-      - action
-      properties:
-        action:
-          type: string
-          enum:
-          - start
-          - stop
-    PatchVirtualMachine:
-      type: object
-      properties:
-        name:
-          type: string
-    PaginatedInstantDeployLocation:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/InstantDeployLocation'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    InstantDeployLocation:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
-    InstantVMConfig:
-      type: object
-      required:
-      - config_id
-      - name
-      properties:
-        config_id:
-          type: string
-          format: uuid
-        name:
-          type: string
-          example: My Instant Virtual Machine
-        password:
-          type:
-          - string
-          - 'null'
-          minLength: 8
-        cloudinit_script:
-          type:
-          - string
-          - 'null'
-    PaginatedVirtualMachine:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/VirtualMachineDetails'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    InstantVMResult:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        status:
-          type: string
     VirtualMachineDetails:
       type: object
       properties:
@@ -313,6 +219,100 @@ components:
           - 'null'
         pricing:
           $ref: '#/components/schemas/VirtualMachinePricing'
+    InstantVMResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+    InstantDeployLocation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    PaginatedInstantDeployLocation:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantDeployLocation'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    InstantVMConfig:
+      type: object
+      required:
+      - config_id
+      - name
+      properties:
+        config_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: My Instant Virtual Machine
+        password:
+          type:
+          - string
+          - 'null'
+          minLength: 8
+        cloudinit_script:
+          type:
+          - string
+          - 'null'
+    VMPowerSchema:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - start
+          - stop
+    PortForwardConfig:
+      type: object
+      properties:
+        internal_port:
+          type: integer
+        external_port:
+          type: integer
+    PatchVirtualMachine:
+      type: object
+      properties:
+        name:
+          type: string
+    VirtualMachinePricing:
+      type: object
+      properties:
+        rate_hourly:
+          type: string
+          example: '2.500000'
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    PaginatedVirtualMachine:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualMachineDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   parameters:
     VirtualMachineId:
       name: virtual_machine_id

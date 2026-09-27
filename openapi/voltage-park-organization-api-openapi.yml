@@ -122,35 +122,21 @@ paths:
           description: Organization address set.
 components:
   schemas:
-    PaginatedSshKey:
+    SshKeyDetails:
       type: object
+      required:
+      - id
+      - name
+      - content
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SshKeyDetails'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    OrganizationUpdate:
-      type: object
-      properties:
+        id:
+          type: string
+          format: uuid
         name:
           type: string
-        billing_notification_target_emails:
-          type: array
-          items:
-            type: string
-        low_balance_emails_enabled:
-          type: boolean
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
+          example: My-SSH-Public-Key
+        content:
+          type: string
     OrganizationAddressSet:
       allOf:
       - $ref: '#/components/schemas/OrganizationAddressDetails'
@@ -174,37 +160,15 @@ components:
             type: string
         low_balance_emails_enabled:
           type: boolean
-    SshKeyDetails:
+    PaginatedSshKey:
       type: object
-      required:
-      - id
-      - name
-      - content
       properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-          example: My-SSH-Public-Key
-        content:
-          type: string
-    CreateSshKeyConfig:
-      type: object
-      required:
-      - name
-      - content
-      properties:
-        name:
-          type: string
-          minLength: 3
-          maxLength: 64
-          description: Label for this SSH public key. Up to 64 characters; alphanumeric, hyphens, or spaces only.
-          example: My-SSH-Public-Key
-        content:
-          type: string
-          description: The SSH public key contents.
-          example: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDAKOgHv82A6Oi7AWLvBC9N...
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SshKeyDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     OrganizationAddressDetails:
       type: object
       properties:
@@ -222,6 +186,42 @@ components:
           type: string
         country:
           type: string
+    CreateSshKeyConfig:
+      type: object
+      required:
+      - name
+      - content
+      properties:
+        name:
+          type: string
+          minLength: 3
+          maxLength: 64
+          description: Label for this SSH public key. Up to 64 characters; alphanumeric, hyphens, or spaces only.
+          example: My-SSH-Public-Key
+        content:
+          type: string
+          description: The SSH public key contents.
+          example: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDAKOgHv82A6Oi7AWLvBC9N...
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    OrganizationUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        billing_notification_target_emails:
+          type: array
+          items:
+            type: string
+        low_balance_emails_enabled:
+          type: boolean
   securitySchemes:
     apiTokenAuth:
       type: http

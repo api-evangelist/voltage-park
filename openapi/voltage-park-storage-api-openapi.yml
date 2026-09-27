@@ -118,40 +118,15 @@ paths:
         '200':
           description: NFS squash updated.
 components:
+  parameters:
+    StorageId:
+      name: storage_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   schemas:
-    StorageRate:
-      type: object
-      properties:
-        rate_hourly:
-          type: string
-    StorageDetails:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        size_in_gb:
-          type: integer
-        status:
-          type: string
-    StorageUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        size_in_gb:
-          type: integer
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
     StorageCreate:
       type: object
       required:
@@ -195,14 +170,39 @@ components:
           - none
           - root
           - all
-  parameters:
-    StorageId:
-      name: storage_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
+    StorageUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        size_in_gb:
+          type: integer
+    StorageRate:
+      type: object
+      properties:
+        rate_hourly:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    StorageDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        size_in_gb:
+          type: integer
+        status:
+          type: string
   securitySchemes:
     apiTokenAuth:
       type: http
