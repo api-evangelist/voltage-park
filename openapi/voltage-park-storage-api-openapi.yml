@@ -118,15 +118,18 @@ paths:
         '200':
           description: NFS squash updated.
 components:
-  parameters:
-    StorageId:
-      name: storage_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
   schemas:
+    NFSSquashUpdate:
+      type: object
+      required:
+      - mode
+      properties:
+        mode:
+          type: string
+          enum:
+          - none
+          - root
+          - all
     StorageCreate:
       type: object
       required:
@@ -150,6 +153,18 @@ components:
           items:
             type: string
             format: uuid
+    StorageRate:
+      type: object
+      properties:
+        rate_hourly:
+          type: string
+    StorageUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        size_in_gb:
+          type: integer
     PaginatedStorage:
       type: object
       properties:
@@ -159,38 +174,6 @@ components:
             $ref: '#/components/schemas/StorageDetails'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    NFSSquashUpdate:
-      type: object
-      required:
-      - mode
-      properties:
-        mode:
-          type: string
-          enum:
-          - none
-          - root
-          - all
-    StorageUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        size_in_gb:
-          type: integer
-    StorageRate:
-      type: object
-      properties:
-        rate_hourly:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
     StorageDetails:
       type: object
       properties:
@@ -203,6 +186,23 @@ components:
           type: integer
         status:
           type: string
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+  parameters:
+    StorageId:
+      name: storage_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     apiTokenAuth:
       type: http

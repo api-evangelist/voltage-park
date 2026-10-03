@@ -122,6 +122,34 @@ paths:
           description: Organization address set.
 components:
   schemas:
+    OrganizationAddressDetails:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+    OrganizationUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        billing_notification_target_emails:
+          type: array
+          items:
+            type: string
+        low_balance_emails_enabled:
+          type: boolean
     SshKeyDetails:
       type: object
       required:
@@ -137,9 +165,6 @@ components:
           example: My-SSH-Public-Key
         content:
           type: string
-    OrganizationAddressSet:
-      allOf:
-      - $ref: '#/components/schemas/OrganizationAddressDetails'
     OrganizationDetails:
       type: object
       required:
@@ -169,23 +194,9 @@ components:
             $ref: '#/components/schemas/SshKeyDetails'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    OrganizationAddressDetails:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        state:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
+    OrganizationAddressSet:
+      allOf:
+      - $ref: '#/components/schemas/OrganizationAddressDetails'
     CreateSshKeyConfig:
       type: object
       required:
@@ -211,17 +222,6 @@ components:
           type: integer
         per_page:
           type: integer
-    OrganizationUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        billing_notification_target_emails:
-          type: array
-          items:
-            type: string
-        low_balance_emails_enabled:
-          type: boolean
   securitySchemes:
     apiTokenAuth:
       type: http

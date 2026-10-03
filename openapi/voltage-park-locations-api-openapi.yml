@@ -90,7 +90,7 @@ paths:
           description: Instant deploy preset details.
 components:
   schemas:
-    FullLocationDetails:
+    HostNodeDetails:
       type: object
       properties:
         id:
@@ -98,7 +98,16 @@ components:
           format: uuid
         name:
           type: string
-    HostNodeDetails:
+    PaginatedLocation:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FullLocationDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    FullLocationDetails:
       type: object
       properties:
         id:
@@ -115,15 +124,6 @@ components:
           type: integer
         per_page:
           type: integer
-    PaginatedLocation:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/FullLocationDetails'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   parameters:
     LocationId:
       name: location_id

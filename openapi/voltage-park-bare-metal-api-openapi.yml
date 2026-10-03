@@ -207,6 +207,46 @@ paths:
           description: Nodes removed.
 components:
   schemas:
+    PaginatedBareMetalLocation:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BareMetalLocation'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    BareMetalLocation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    RebootBaremetalSchema:
+      type: object
+      properties:
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+    BaremetalPowerSchema:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - start
+          - stop
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
     BareMetalDeployConfig:
       type: object
       required:
@@ -225,28 +265,6 @@ components:
         name:
           type: string
           example: My Baremetal Rental
-    PatchBareMetalRental:
-      type: object
-      properties:
-        name:
-          type: string
-    BareMetalLocation:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-    PaginatedBareMetalLocation:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BareMetalLocation'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     SlurmUserRequest:
       type: object
       required:
@@ -256,16 +274,24 @@ components:
           type: string
         public_key:
           type: string
-    BaremetalPowerSchema:
+    PatchBareMetalRental:
       type: object
-      required:
-      - action
       properties:
-        action:
+        name:
           type: string
-          enum:
-          - start
-          - stop
+    DeployBareResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+    RemoveNodesSchema:
+      type: object
+      properties:
         node_ids:
           type: array
           items:
@@ -280,32 +306,6 @@ components:
           type: integer
         per_page:
           type: integer
-    RebootBaremetalSchema:
-      type: object
-      properties:
-        node_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-    RemoveNodesSchema:
-      type: object
-      properties:
-        node_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-    DeployBareResult:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        status:
-          type: string
   parameters:
     ClusterId:
       name: cluster_id
