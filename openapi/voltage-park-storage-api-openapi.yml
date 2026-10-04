@@ -119,6 +119,13 @@ paths:
           description: NFS squash updated.
 components:
   schemas:
+    StorageUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        size_in_gb:
+          type: integer
     NFSSquashUpdate:
       type: object
       required:
@@ -130,6 +137,18 @@ components:
           - none
           - root
           - all
+    StorageDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        size_in_gb:
+          type: integer
+        status:
+          type: string
     StorageCreate:
       type: object
       required:
@@ -153,18 +172,6 @@ components:
           items:
             type: string
             format: uuid
-    StorageRate:
-      type: object
-      properties:
-        rate_hourly:
-          type: string
-    StorageUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        size_in_gb:
-          type: integer
     PaginatedStorage:
       type: object
       properties:
@@ -174,18 +181,6 @@ components:
             $ref: '#/components/schemas/StorageDetails'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    StorageDetails:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        size_in_gb:
-          type: integer
-        status:
-          type: string
     Pagination:
       type: object
       properties:
@@ -195,6 +190,11 @@ components:
           type: integer
         per_page:
           type: integer
+    StorageRate:
+      type: object
+      properties:
+        rate_hourly:
+          type: string
   parameters:
     StorageId:
       name: storage_id

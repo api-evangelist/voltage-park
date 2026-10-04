@@ -89,24 +89,15 @@ paths:
         '200':
           description: Instant deploy preset details.
 components:
+  parameters:
+    LocationId:
+      name: location_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   schemas:
-    HostNodeDetails:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-    PaginatedLocation:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/FullLocationDetails'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     FullLocationDetails:
       type: object
       properties:
@@ -124,14 +115,23 @@ components:
           type: integer
         per_page:
           type: integer
-  parameters:
-    LocationId:
-      name: location_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
+    HostNodeDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    PaginatedLocation:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FullLocationDetails'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     apiTokenAuth:
       type: http

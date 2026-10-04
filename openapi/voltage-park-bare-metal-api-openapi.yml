@@ -207,31 +207,6 @@ paths:
           description: Nodes removed.
 components:
   schemas:
-    PaginatedBareMetalLocation:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BareMetalLocation'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    BareMetalLocation:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-    RebootBaremetalSchema:
-      type: object
-      properties:
-        node_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
     BaremetalPowerSchema:
       type: object
       required:
@@ -242,6 +217,72 @@ components:
           enum:
           - start
           - stop
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+    DeployBareResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+    SlurmUserRequest:
+      type: object
+      required:
+      - username
+      properties:
+        username:
+          type: string
+        public_key:
+          type: string
+    BareMetalLocation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+    RemoveNodesSchema:
+      type: object
+      properties:
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+    PatchBareMetalRental:
+      type: object
+      properties:
+        name:
+          type: string
+    PaginatedBareMetalLocation:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BareMetalLocation'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    RebootBaremetalSchema:
+      type: object
+      properties:
         node_ids:
           type: array
           items:
@@ -265,57 +306,16 @@ components:
         name:
           type: string
           example: My Baremetal Rental
-    SlurmUserRequest:
-      type: object
-      required:
-      - username
-      properties:
-        username:
-          type: string
-        public_key:
-          type: string
-    PatchBareMetalRental:
-      type: object
-      properties:
-        name:
-          type: string
-    DeployBareResult:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        status:
-          type: string
-    RemoveNodesSchema:
-      type: object
-      properties:
-        node_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        per_page:
-          type: integer
   parameters:
-    ClusterId:
-      name: cluster_id
+    BareMetalRentalId:
+      name: baremetal_rental_id
       in: path
       required: true
       schema:
         type: string
         format: uuid
-    BareMetalRentalId:
-      name: baremetal_rental_id
+    ClusterId:
+      name: cluster_id
       in: path
       required: true
       schema:
