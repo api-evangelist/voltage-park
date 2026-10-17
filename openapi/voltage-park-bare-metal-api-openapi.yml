@@ -207,30 +207,10 @@ paths:
           description: Nodes removed.
 components:
   schemas:
-    BaremetalPowerSchema:
-      type: object
-      required:
-      - action
-      properties:
-        action:
-          type: string
-          enum:
-          - start
-          - stop
-        node_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-    DeployBareResult:
+    PatchBareMetalRental:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
         name:
-          type: string
-        status:
           type: string
     SlurmUserRequest:
       type: object
@@ -241,14 +221,6 @@ components:
           type: string
         public_key:
           type: string
-    BareMetalLocation:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
     Pagination:
       type: object
       properties:
@@ -258,18 +230,15 @@ components:
           type: integer
         per_page:
           type: integer
-    RemoveNodesSchema:
+    DeployBareResult:
       type: object
       properties:
-        node_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-    PatchBareMetalRental:
-      type: object
-      properties:
+        id:
+          type: string
+          format: uuid
         name:
+          type: string
+        status:
           type: string
     PaginatedBareMetalLocation:
       type: object
@@ -280,14 +249,6 @@ components:
             $ref: '#/components/schemas/BareMetalLocation'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    RebootBaremetalSchema:
-      type: object
-      properties:
-        node_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
     BareMetalDeployConfig:
       type: object
       required:
@@ -306,16 +267,55 @@ components:
         name:
           type: string
           example: My Baremetal Rental
+    BareMetalLocation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    BaremetalPowerSchema:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - start
+          - stop
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+    RebootBaremetalSchema:
+      type: object
+      properties:
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+    RemoveNodesSchema:
+      type: object
+      properties:
+        node_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
   parameters:
-    BareMetalRentalId:
-      name: baremetal_rental_id
+    ClusterId:
+      name: cluster_id
       in: path
       required: true
       schema:
         type: string
         format: uuid
-    ClusterId:
-      name: cluster_id
+    BareMetalRentalId:
+      name: baremetal_rental_id
       in: path
       required: true
       schema:

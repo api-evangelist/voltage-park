@@ -98,7 +98,7 @@ components:
         type: string
         format: uuid
   schemas:
-    FullLocationDetails:
+    HostNodeDetails:
       type: object
       properties:
         id:
@@ -115,14 +115,6 @@ components:
           type: integer
         per_page:
           type: integer
-    HostNodeDetails:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
     PaginatedLocation:
       type: object
       properties:
@@ -132,6 +124,14 @@ components:
             $ref: '#/components/schemas/FullLocationDetails'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    FullLocationDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
   securitySchemes:
     apiTokenAuth:
       type: http
